@@ -1,2 +1,2 @@
 # Drupal module
-Joomla module repo for Bookingfor
+Drupal module repo for Bookingfor
