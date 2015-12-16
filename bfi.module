@@ -1,0 +1,2108 @@
+<?php
+
+function bfi_menu() {
+  $items['admin/config/bfi'] = array(
+    'title' => 'Bookingfor Integrations Settings',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('bfi_settings_form'),
+    'access callback' => TRUE,
+  );
+  $items['search-availability'] = array(
+    'title' => 'Search Results',
+    'page callback' => 'search_availability',
+    'access callback' => TRUE,
+    'type' => MENU_CALLBACK,
+  );
+  $items['accommodation-details/resource/%'] = array(
+    'title' => 'Accomodation Details',
+    'page callback' => 'accommodationdetails_resource',
+    'access callback' => TRUE,
+    'type' => MENU_CALLBACK,
+  );
+  $items['accommodation-details/resource/%/form'] = array(
+    'title' => 'Bookingfor',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('merchant_payment_form'),
+    'access callback' => TRUE,
+    'type' => MENU_CALLBACK,
+  );
+  $items['payment'] = array(
+    'title' => 'Bookingfor Payment',
+    'page callback' => 'bfi_payment',
+    'access callback' => TRUE,
+    'type' => MENU_CALLBACK,
+  );
+  $items['merchant-details/merchantdetails/%'] = array(
+    'title' => 'Bookingfor',
+    'page callback' => 'accommodationdetails_merchantdetails',
+    'access arguments' => array('access content'),
+    'type' => MENU_CALLBACK,
+  );
+  $items['merchant-details/merchantdetails/%/reviews'] = array(
+    'title' => 'Bookingfor',
+    'page callback' => 'accommodationdetails_reviews',
+    'access arguments' => array('access content'),
+    'type' => MENU_CALLBACK,
+  );
+  $items['merchant-details/merchantdetails/%/review'] = array(
+    'title' => 'Bookingfor',
+    'page callback' => 'accommodationdetails_review',
+    'access arguments' => array('access content'),
+    'type' => MENU_CALLBACK,
+  );
+  $items['merchant-details/merchantdetails/%/thanks'] = array(
+    'title' => 'Bookingfor',
+    'page callback' => 'accommodationdetails_thanks',
+    'access arguments' => array('access content'),
+    'type' => MENU_CALLBACK,
+  );
+ return $items;
+}
+
+function bfi_theme($existing, $type, $theme, $path) {
+  return array(
+    'search_listing'  => array(
+      'template' => 'search-listing',
+      'path' => $path . '/templates',
+      'variables' => array(
+                'items' => NULL,
+            ),
+    ),
+    'resource'  => array(
+      'template' => 'resource',
+      'path' => $path . '/templates',
+      'variables' => array(
+                'resource' => NULL,
+                'photos_slider' => NULL,
+                'inforequest' => NULL,
+                'rate_calculator' => NULL
+            ),
+    ),
+    'ajaxresources'  => array(
+      'template' => 'ajaxresources',
+      'path' => $path . '/templates',
+      'variables' => array(
+                'resource' => NULL,
+                'merchant' => NULL,
+            ),
+    ),
+    'resource_gallery'  => array(
+      'template' => 'resource-gallery',
+      'path' => $path . '/templates',
+      'variables' => array(
+                'images' => NULL,
+                'resource' => NULL,
+            ),
+    ),
+    'merchant_gallery'  => array(
+      'template' => 'merchant-gallery',
+      'path' => $path . '/templates',
+      'variables' => array(
+                'images' => NULL,
+                'merchant' => NULL,
+            ),
+    ),
+    'merchantdetails'  => array(
+      'template' => 'merchantdetails',
+      'path' => $path . '/templates',
+      'variables' => array(
+                'merchant' => NULL,
+                'slider' => NULL,
+            ),
+    ),
+    'merchantreviews'  => array(
+      'template' => 'merchantreviews',
+      'path' => $path . '/templates',
+      'variables' => array(
+                'merchant' => NULL,
+            ),
+    ),
+   );
+}
+
+function bfi_settings_form($form, $form_state) {
+  $form['ws_url'] = array(
+    '#type' => 'textfield',
+    '#title' => 'Web Service URL',
+    '#default_value' => variable_get('ws_url', ''),
+  );
+  
+  $form['api_key'] = array(
+    '#type' => 'textarea',
+    '#title' => 'API Key',
+    '#default_value' => variable_get('api_key', ''),
+  );
+  
+  $form['merchants_reviews_text_value_1'] = array(
+    '#type' => 'textfield',
+    '#title' => 'Merchants Review Valuation Text - Value 1',
+    '#default_value' => variable_get('merchants_reviews_text_value_1', ''),
+  );
+  $form['merchants_reviews_text_value_2'] = array(
+    '#type' => 'textfield',
+    '#title' => 'Merchants Review Valuation Text - Value 2',
+    '#default_value' => variable_get('merchants_reviews_text_value_2', ''),
+  );
+  $form['merchants_reviews_text_value_3'] = array(
+    '#type' => 'textfield',
+    '#title' => 'Merchants Review Valuation Text - Value 3',
+    '#default_value' => variable_get('merchants_reviews_text_value_3', ''),
+  );
+  $form['merchants_reviews_text_value_4'] = array(
+    '#type' => 'textfield',
+    '#title' => 'Merchants Review Valuation Text - Value 4',
+    '#default_value' => variable_get('merchants_reviews_text_value_4', ''),
+  );
+  $form['merchants_reviews_text_value_5'] = array(
+    '#type' => 'textfield',
+    '#title' => 'Merchants Review Valuation Text - Value 5',
+    '#default_value' => variable_get('merchants_reviews_text_value_5', ''),
+  );
+  $form['merchants_reviews_text_value_6'] = array(
+    '#type' => 'textfield',
+    '#title' => 'Merchants Review Valuation Text - Value 6',
+    '#default_value' => variable_get('merchants_reviews_text_value_6', ''),
+  );
+  $form['merchants_reviews_text_value_7'] = array(
+    '#type' => 'textfield',
+    '#title' => 'Merchants Review Valuation Text - Value 7',
+    '#default_value' => variable_get('merchants_reviews_text_value_7', ''),
+  );
+  $form['merchants_reviews_text_value_8'] = array(
+    '#type' => 'textfield',
+    '#title' => 'Merchants Review Valuation Text - Value 8',
+    '#default_value' => variable_get('merchants_reviews_text_value_8', ''),
+  );
+  $form['merchants_reviews_text_value_9'] = array(
+    '#type' => 'textfield',
+    '#title' => 'Merchants Review Valuation Text - Value 9',
+    '#default_value' => variable_get('merchants_reviews_text_value_9', ''),
+  );
+  $form['merchants_reviews_text_value_10'] = array(
+    '#type' => 'textfield',
+    '#title' => 'Merchants Review Valuation Text - Value 10',
+    '#default_value' => variable_get('merchants_reviews_text_value_10', ''),
+  );
+  
+  return system_settings_form($form);
+}
+
+/**
+ * Implements hook_block_info().
+ */
+function bfi_block_info() {
+  $blocks = array();
+  $blocks['bfi_search_by_merchant_type'] = array(
+    'info' => t('BFI Search by Merchant Type Block'),
+  );
+  $blocks['bfi_search_filter'] = array(
+    'info' => t('BFI Search Filter Block'),
+  );
+  return $blocks;
+}
+
+/**
+ * Implements hook_block_view().
+ */
+function bfi_block_view($delta='') {
+  $block = array();
+  
+  switch($delta) {
+    case 'bfi_search_by_merchant_type' :
+      $block['subject'] = '';
+      $block['content']  = bfi_search_by_merchant_type_form_helper();
+      break;
+    case 'bfi_search_filter' :
+      $block['subject'] = '';
+      $block['content']  = bfi_search_filter_form_helper();
+      break;
+  }
+  
+  return $block;
+}
+
+function bfi_search_filter_form_helper() {
+	$form = drupal_get_form('bfi_search_filter_form');
+   return drupal_render($form);
+}
+
+function bfi_search_filter_form($form, $form_state) {
+$priceScaleMin = 0;
+$priceScaleMax = 300;
+$priceScaleStep = 50;
+
+$locationZones = BFCHelper::getLocationZones();
+
+$masterTypologies = BFCHelper::getMasterTypologies();
+
+$merchantGroups = BFCHelper::getMerchantGroups();
+
+$pars = BFCHelper::getSearchParamsSession();
+
+$masterTypeId = isset($pars['masterTypeId']) ? $pars['masterTypeId'] : '';
+$merchantCategoryId = isset($pars['merchantCategoryId']) ? $pars['merchantCategoryId'] : '';
+
+if (!empty($merchantCategoryId)) {
+	$services  =  BFCHelper::getServicesByMerchantsCategoryId($merchantCategoryId, 'cultureCode');
+}
+
+$duration = 1;// $pars['duration'];
+if (empty($duration)) {
+	$duration =1;
+}
+
+$searchid = $_GET['searchid'];
+$isMerchantResults = $pars['merchantResults'];
+
+$filtersEnabled = BFCHelper::getEnabledFilterSearchParamsSession();
+
+if (isset($filtersEnabled)) {
+	if (!empty($filtersEnabled['stars'])) {
+		$filtersEnabledStars = explode(",", $filtersEnabled['stars']);
+	}
+	if (!empty($filtersEnabled['locationzones'])) {
+		$filtersEnabledLocationZones = explode(",", $filtersEnabled['locationzones']);
+
+
+	}
+	if (!empty($filtersEnabled['mastertypologies'])) {
+		$filtersEnabledMasterTypologies = explode(",", $filtersEnabled['mastertypologies']);
+	}
+	if (!empty($filtersEnabled['merchantgroups'])) {
+		$filtersEnabledMerchantGroups = explode(",", $filtersEnabled['merchantgroups']);
+
+	}
+	if (!empty($filtersEnabled['services'])) {
+		$filtersEnabledServices = explode(",", $filtersEnabled['services']);
+
+	}
+	if (!empty($filtersEnabled['bookingtypes'])) {
+		$filtersEnabledBookingTypes = explode(",", $filtersEnabled['bookingtypes']);
+
+	}
+	if (!empty($filtersEnabled['pricemin'])) {
+		$priceScaleMin = $filtersEnabled['pricemin'];
+
+	}
+	if (!empty($filtersEnabled['pricemax'])) {
+		$priceScaleMax = $filtersEnabled['pricemax'];
+	}
+
+	if (!empty($filtersEnabled['offers'])) {
+		$filtersEnableOffers = explode(",", $filtersEnabled['offers']);
+	}
+
+}
+
+$filtersPriceMin = $priceScaleMin;
+$filtersPriceMax = $priceScaleMax;
+
+$filters = BFCHelper::getFilterSearchParamsSession();
+
+$filtersStarsValue = "";
+$filtersLocationZonesValue = "";
+$filtersMerchantGroupsValue = "";
+$filtersServicesValue = "";
+$filtersMasterTypologiesValue = "";
+$filtersBookingTypesValue = "";
+$filtersOffersValue = "";
+
+$filtersOffers = array();
+$filtersStars = array();
+$filtersLocationZones = array();
+$filtersMerchantGroups = array();
+$filtersServices = array();
+$filtersMasterTypologies = array();
+$filtersBookingTypes = array();
+
+if (isset($filters)) {
+	if (!empty($filters['stars'])) {
+		$filtersStars = explode(",", $filters['stars']);
+		$filtersStarsValue = $filters['stars'];
+	}
+	if (!empty($filters['locationzones'])) {
+		$filtersLocationZones = explode(",", $filters['locationzones']);
+		$filtersLocationZonesValue = $filters['locationzones'];
+	}
+	if (!empty($filters['merchantgroups'])) {
+		$filtersMerchantGroups = explode(",", $filters['merchantgroups']);
+		$filtersMerchantGroupsValue = $filters['merchantgroups'];
+	}
+	if (!empty($filters['services'])) {
+		$filtersServices = explode(",", $filters['services']);
+		$filtersServicesValue = $filters['services'];
+	}
+	if (!empty($filters['mastertypologies'])) {
+		$filtersMasterTypologies = explode(",", $filters['mastertypologies']);
+		$filtersMasterTypologiesValue = $filters['mastertypologies'];
+	}
+	if (!empty($filters['pricemin'])) {
+		$filtersPriceMin = 	$filters['pricemin'];// / $duration;
+	}
+	else {
+     $filtersPriceMin = $priceScaleMin;
+	}
+	if (!empty($filters['pricemax'])) {
+	  $filtersPriceMax = 	$filters['pricemax'];// / $duration;
+	}
+	else {
+	  $filtersPriceMax = $priceScaleMax;
+	}
+	if (!empty($filters['bookingtypes'])) {
+		$filtersBookingTypes = explode(",", $filters['bookingtypes']);
+		$filtersBookingTypesValue = $filters['bookingtypes'];
+	}
+	if (!empty($filters['offers'])) {
+		$filtersOffers = explode(",", $filters['offers']);
+		$filtersOffersValue = $filters['offers'];
+	}
+}
+
+$offers = array('1' => 'Include Offers');
+
+if (isset($filtersEnableOffers) &&  is_array($filtersEnableOffers)) {
+  $def = array();
+  $options = array();
+  foreach ($offers as $offer => $offerText) {
+    if (isset($filtersEnableOffers) &&  is_array($filtersEnableOffers) && in_array($offer,$filtersOffers)) {
+       $def[] = $offer;
+    }
+    $options[$offer] = $offerText;
+  }
+  $form['filtersOffers'] = array('#type' => 'checkboxes',
+    '#options' => $options,
+    '#default_value' => $def,
+    '#title' => t('Offers'),
+    '#ajax' => array(
+        'callback' => 'execute_ajax_search',
+        'wrapper' => 'refresh-ajax',
+    ),
+  ); 
+}
+
+if (isset($filtersEnabledStars) &&  is_array($filtersEnabledStars)) {
+  $def = array();
+  $options = array();
+  for ($star = 1; $star <= 5; ++$star) {
+    if (isset($filtersEnabledStars) &&  is_array($filtersEnabledStars) && in_array($star,$filtersEnabledStars)) {
+      if (isset($filtersStars) &&  is_array($filtersStars) && in_array($star,$filtersStars)){
+		  $def[] = $star;
+		}
+		$options[$star] = '<span class="com_bookingforconnector_merchantdetails-rating com_bookingforconnector_merchantdetails-rating'.$star.'"><span class="com_bookingforconnector_merchantdetails-ratingText">'.$star.'</span></span>';
+    }
+  }
+  $form['filtersStars'] = array('#type' => 'checkboxes',
+    '#options' => $options,
+    '#default_value' => $def,
+    '#title' => t('Stars'),
+    '#ajax' => array(
+        'callback' => 'execute_ajax_search',
+        'wrapper' => 'refresh-ajax',
+    ),
+  );                       
+}
+
+$form['price'] = array(
+    '#type' => 'slider',
+    '#title' => 'Price',
+    '#max' => $priceScaleMax,
+    '#min' => $priceScaleMin,
+    '#input_title' => NULL,
+    '#input2_title' => NULL,
+    '#orientation' => 'horizontal',
+    '#step' => $priceScaleStep,
+    '#range' => TRUE,
+    '#default_value' => array('value' => $filtersPriceMin, 'value2' => $filtersPriceMax),
+    '#display_inputs' => FALSE,
+    '#display_values' => TRUE,
+    '#display_values_format' => '&#8364;%{value}%',
+    '#ajax' => array(
+        'callback' => 'execute_ajax_search',
+        'wrapper' => 'refresh-ajax',
+    ),
+);
+
+if (isset($locationZones) && isset($filtersEnabledLocationZones)) {
+  $def = array();
+  $options = array();
+  foreach ($locationZones as $locationZone) {
+    if (isset($filtersEnabledLocationZones) &&  is_array($filtersEnabledLocationZones) && in_array($locationZone->LocationZoneID,$filtersEnabledLocationZones)) {
+      if (isset($filtersLocationZones) &&  is_array($filtersLocationZones) && in_array($locationZone->LocationZoneID,$filtersLocationZones)){
+      	  $def[] = $locationZone->LocationZoneID;
+	   }
+	   $options[$locationZone->LocationZoneID] = $locationZone->Name;
+    }
+  }
+  $form['filtersLocationZones'] = array('#type' => 'checkboxes',
+    '#options' => $options,
+    '#default_value' => $def,
+    '#title' => t('Zone'),
+    '#ajax' => array(
+        'callback' => 'execute_ajax_search',
+        'wrapper' => 'refresh-ajax',
+    ),
+  );    
+}
+
+if (isset($merchantGroups) && isset($filtersEnabledMerchantGroups)) {
+  $def = array();
+  $options = array();
+  foreach ($merchantGroups as $merchantGroup) {
+    if (isset($filtersEnabledMerchantGroups) &&  is_array($filtersEnabledMerchantGroups) && in_array($merchantGroup->MerchantGroupId,$filtersEnabledMerchantGroups)) {
+      if (isset($filtersMerchantGroups) &&  is_array($filtersMerchantGroups) && in_array($merchantGroup->MerchantGroupId,$filtersMerchantGroups)){
+        $def[] = $merchantGroup->MerchantGroupId;
+	   }
+	   $options[$merchantGroup->MerchantGroupId] = $merchantGroup->Name;
+    }
+  }
+  $form['filtersMerchantGroups'] = array('#type' => 'checkboxes',
+    '#options' => $options,
+    '#default_value' => $def,
+    '#title' => t('Club Hotel'),
+    '#ajax' => array(
+        'callback' => 'execute_ajax_search',
+        'wrapper' => 'refresh-ajax',
+    ),
+  );    
+}
+if (isset($services) && isset($filtersEnabledServices) ) {
+  $def = array();
+  $options = array();
+  foreach ($services as $service) {
+    if (isset($filtersEnabledServices) &&  is_array($filtersEnabledServices) && in_array($service->ServiceId,$filtersEnabledServices)) {
+      if (isset($filtersServices) &&  is_array($filtersServices) && in_array($service->ServiceId,$filtersServices)){
+        $def[] = $service->ServiceId;
+		}
+		$options[$service->ServiceId] = $service->Name;
+    }
+  }
+  $form['filtersServices'] = array('#type' => 'checkboxes',
+    '#options' => $options,
+    '#default_value' => $def,
+    '#title' => t('Accomodation'),
+    '#ajax' => array(
+        'callback' => 'execute_ajax_search',
+        'wrapper' => 'refresh-ajax',
+    ),
+  );
+}
+if (isset($masterTypologies) && isset($filtersEnabledMasterTypologies)) {
+  $def = array();
+  $options = array();
+  foreach ($masterTypologies as $masterTypology) {
+    if (isset($filtersEnabledMasterTypologies) &&  is_array($filtersEnabledMasterTypologies) && in_array($masterTypology->MasterTypologyId,$filtersEnabledMasterTypologies)) {
+      if (isset($filtersMasterTypologies) &&  is_array($filtersMasterTypologies) && in_array($masterTypology->MasterTypologyId,$filtersMasterTypologies)){
+        $def[] = $masterTypology->MasterTypologyId;
+	   }
+	   $options[$masterTypology->MasterTypologyId] = $masterTypology->Name;
+    }
+  }
+  $form['filtersMasterTypologies'] = array('#type' => 'checkboxes',
+    '#options' => $options,
+    '#default_value' => $def,
+    '#title' => t('Accomodation'),
+    '#ajax' => array(
+        'callback' => 'execute_ajax_search',
+        'wrapper' => 'refresh-ajax',
+    ),
+  );
+}
+return $form;
+}
+
+function execute_ajax_search($form, $form_state) {
+$stars = array_filter($form_state['values']['filtersStars']);
+$stars = implode(',', $stars);
+
+$locationzones = array_filter($form_state['values']['filtersLocationZones']);
+$locationzones = implode(',', $locationzones);
+
+$merchantgroups = array_filter($form_state['values']['filtersMerchantGroups']);
+$merchantgroups = implode(',', $merchantgroups);
+
+$services = array_filter($form_state['values']['filtersServices']);
+$services = implode(',', $services);
+
+$mastertypologies = array_filter($form_state['values']['filtersMasterTypologies']);
+$mastertypologies = implode(',', $mastertypologies);
+
+$offers = array_filter($form_state['values']['filtersOffers']);
+$offers = implode(',', $offers);
+
+$pricemin = $form_state['values']['price']['value'];
+$pricemax = $form_state['values']['price']['value2'];
+
+$filters = array('stars' => $stars, 
+  'locationzones' => $locationzones, 
+  'merchantgroups' => $merchantgroups, 
+  'services' => $services,
+  'mastertypologies' => $mastertypologies,
+  'pricemin' => $pricemin,
+  'pricemax' => $pricemax,
+  'bookingtypes' => '',
+  'offers' => $offers
+  );
+  
+ $_SESSION['search.params']['filters'] = $filters;
+ 
+ $searchmodel = new BookingForConnectorModelSearch;
+ $items = $searchmodel->getItems(false, false);
+ $output = '';
+    $output = $output. '<div id="bfcmerchantlist">
+    <h1 class="com_bookingforconnector_search-title">Results found from 13/12/2015 for 1 nigths</h1>
+    <div class="resourcetabmenu">
+    <a class="resources" rel="resources"><i class="icon-list-ul"></i> List</a><a id="maptab" class="mappa" rel="mappa">Map</a>
+    </div>
+    <div class="resourcetabcontainer">
+    <div id="resources" class="tabcontent">
+    <div class="com_bookingforconnector-merchantlist">';
+    $output = $output. theme('search_listing', array('items' => $items));
+    $output = $output. '</div>
+    </div>
+    <div id="mappa" class="tabcontent">		
+    <div id="map_canvassearch" class="searchmap" style="width:100%; min-height:400px"></div>
+    </div>
+    </div>
+    </div>';
+  $commands[] = ajax_command_settings(array(
+   'bfi' => array('search_items' => $items),
+  ), TRUE);
+ $commands[] = ajax_command_replace('#bfcmerchantlist', $output);
+
+ return array(
+        '#type' => 'ajax',
+        '#commands' => $commands,
+ );
+}
+
+function bfi_search_by_merchant_type_form_helper($include_price_quote = FALSE, $model = NULL, $resource = NULL) {
+$language = 'en-gb';
+$checkoutspan = '+1 day';
+$checkin = new DateTime();
+$checkout = new DateTime();
+$paxes = 2;
+$paxages = array();
+$merchantCategoryId = 0;
+$pars = BFCHelper::getSearchParamsSession();
+
+if (!empty($pars)){
+$checkin = $pars['checkin'] ? $pars['checkin'] : new DateTime();
+$checkout = $pars['checkout'] ? $pars['checkout'] : new DateTime();
+
+$paxes = $pars['paxes'] ?: 2;
+$paxages = $pars['paxages'];
+$merchantCategoryId = $pars['merchantCategoryId']?: 0;
+
+if ($pars['checkout'] == null)
+	$checkout->modify($checkoutspan);
+}
+
+if ($checkin == $checkout){
+	$checkout->modify($checkoutspan);
+}
+
+$merchantCategories = BFCHelper::getMerchantCategoriesForRequest($language);
+
+$listmerchantCategories = array();
+foreach ($merchantCategories as $mc) {
+	$listmerchantCategories[$mc->MerchantCategoryId] = $mc->Name;
+}
+
+$persons = drupal_map_assoc(array(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10));
+
+$nad = 0;
+if (empty($paxages)){
+	$nad = 2;
+}
+$nch = 0;
+$nse = 0;
+$countPaxes = array_count_values($paxages);
+
+$nchs = array_values(array_filter($paxages, function($age) {
+	if ($age < (int)BFCHelper::$defaultAdultsAge)
+		return true;
+	return false;
+}));
+
+foreach ($countPaxes as $key => $count) {
+	if ($key >= BFCHelper::$defaultAdultsAge) {
+		if ($key >= BFCHelper::$defaultSenioresAge) {
+			$nse += $count;
+		} else {
+			$nad += $count;
+		}
+	} else {
+		$nch += $count;
+	}
+}
+
+$adults = drupal_map_assoc(array(1, 2, 3, 4, 5, 6));
+$children =  drupal_map_assoc(array(0, 1, 2, 3, 4));
+$childrenAges =  drupal_map_assoc(array(0, 1, 2, 4, 3, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17));
+$seniores =  drupal_map_assoc(array(0, 1, 2, 4, 3, 5, 6));
+$form = drupal_get_form('search_merchant_type_form', $listmerchantCategories, $checkin, $checkout, $adults, $children, $childrenAges, $language, $nad, $nch, $nchs, $include_price_quote, $model, $resource);
+return drupal_render($form);
+}
+
+function search_merchant_type_form($form, $form_state, $listmerchantCategories, $checkin, $checkout, $adults, $children, $childrenAges, $language, $nad, $nch, $nchs, $include_price_quote, $model, $resource) {
+   $childnum = isset($form_state['values']['adults']) ? $form_state['values']['adults']: $nch;
+   $adultnum =  isset($form_state['values']['adults']) ? $form_state['values']['adults']: $nad;
+      
+   if($include_price_quote) {
+   	  $wrapper = 'childages-alt';
+   	  $form['merchantCategoryId'] = array('#type' => 'hidden', '#value' => array_keys($listmerchantCategories)[0]);
+   	}
+   	else {
+   	  $wrapper = 'childages';
+   	  $form['merchantCategoryId'] = array(
+       '#type' => 'select',
+       '#title' => t('Accomodation'),
+       '#default_value' => array_keys($listmerchantCategories)[0],
+       '#options' => $listmerchantCategories,
+       '#required' => TRUE,
+     );
+   	}
+   $form['checkin'] = array(
+      '#type' => 'date_popup',
+      '#required' => TRUE,
+      '#date_format' => 'Y-m-d',
+      '#default_value' => $checkin->format('Y-m-d')
+  );
+  $form['checkout'] = array(
+     '#type' => 'date_popup',
+     '#required' => TRUE,
+     '#date_format' => 'Y-m-d',
+     '#default_value' => $checkout->format('Y-m-d')
+ );
+ $form['adults'] = array(
+     '#type' => 'select',
+     '#title' => t('Adults'),
+     '#default_value' => $adultnum,
+     '#options' => $adults,
+     '#required' => TRUE,
+      '#ajax' => array(
+        'callback' => 'change_child_ages_textfield',
+        'wrapper' => $wrapper,
+      ),
+   );
+   $form['children'] = array(
+      '#type' => 'select',
+      '#title' => t('Children'),
+     '#default_value' => $childnum,
+      '#options' => $children,
+      '#required' => TRUE,
+      '#ajax' => array(
+        'callback' => 'change_child_ages_textfield',
+        'wrapper' => $wrapper,
+      ),
+    );
+   if($include_price_quote) {
+     $form['childrenages'] = array('#type' => 'container', '#prefix' => '<div id="childages-alt">', '#suffix' => '</div>');	  
+   	}
+   	else {
+   	  $form['childrenages'] = array('#type' => 'container', '#prefix' => '<div id="childages">', '#suffix' => '</div>');
+   	}
+    if(isset($form_state['values']['children'])) {
+    	$childnum = $form_state['values']['children'];
+    }
+    if(isset($form_state['values']['adults'])) {
+    	$adultnum = $form_state['values']['adults'];
+    }
+    if($childnum) {
+    	$form['childrenages']['child_agesheader'] = array('#type' => 'markup', '#markup' => '<strong>Children Ages</strong>');
+      for($i = 1; $i <= $childnum; $i++) {
+        $form['childrenages']['childages'.$i] = array(
+           '#type' => 'select',
+           '#default_value' => 0,
+           '#options' => $childrenAges,
+           '#default_value' => isset($form_state['values']['childages'.$i]) ? : $nchs[$i - 1]
+         );
+       }
+     }
+     $form['childrenages']['persons'] = array(
+         '#type' => 'hidden',
+         '#value' => $childnum + $adultnum,
+       );
+     $form['searchid'] = array(
+         '#type' => 'hidden',
+         '#value' => uniqid('', true),
+     );
+     $form['newsearch'] = array(
+         '#type' => 'hidden',
+         '#value' => 1,
+     );
+     $form['onlystay'] = array(
+        '#type' => 'hidden',
+        '#value' => 1,
+     );
+     $form['limitstart'] = array(
+        '#type' => 'hidden',
+        '#value' => 0,
+     );
+     $form['filter_order'] = array(
+        '#type' => 'hidden',
+        '#value' => '',
+     );
+     $form['filter_order_Dir'] = array(
+       '#type' => 'hidden',
+       '#value' => '',
+     );
+     $form['cultureCode'] = array(
+       '#type' => 'hidden',
+       '#value' => $language,
+     );
+     $form['merchantId'] = array(
+       '#type' => 'hidden',
+       '#value' => '',
+     );
+     if($include_price_quote) {
+       induce_price_quote_fields($form, $form_state, $model, $resource);
+     }
+     else {
+       $form['submit'] = array(
+         '#type' => 'submit',
+         '#value' => t('Search'),
+       );     
+     }
+  return $form;
+}
+
+function change_child_ages_textfield($form, $form_state) {
+  return $form['childrenages'];
+}
+
+function search_merchant_type_form_submit($form, $form_state) {
+  $form_state['values']['checkin'] = date('m/d/Y', strtotime($form_state['values']['checkin']));
+  $form_state['values']['checkout'] = date('m/d/Y', strtotime($form_state['values']['checkout']));
+
+  $query = $form_state['values'];
+
+  if(isset($form_state['values']['quote_form']) && $form_state['values']['quote_form'] == 1) {
+  	 $_SESSION['search.params']['totalDiscounted'] = $form_state['values']['totalDiscounted'];
+    $url = url('accommodation-details/resource/'.$form_state['values']['resourceId'].'-'.seoUrl($form_state['values']['resourceName']).'/form', array(
+      'query' => $query, 'absolute' => TRUE)
+    );
+  }
+  else {
+    $url = url('search-availability', array(
+      'query' => $query, 'absolute' => TRUE)
+    );
+  }
+  drupal_goto($url);
+}
+
+function search_availability() {
+  if(!isset($_GET['task'])) {
+    setSessionFromSubmittedData();
+    $searchmodel = new BookingForConnectorModelSearch;
+    $items = $searchmodel->getItems(false, false);
+    drupal_add_js(array('bfi' => array('search_items' => $items)), array('type' => 'setting'));
+    drupal_set_title('Results found from '.$_SESSION['search.params']['checkin']->format('m/d/Y').' for '.$_SESSION['search.params']['duration'].' nigths');
+    $output = '';
+    $output = $output. '<div id="bfcmerchantlist">
+    <div class="resourcetabmenu">
+    <a class="resources" rel="resources"><i class="icon-list-ul"></i> List</a><a id="maptab" class="mappa" rel="mappa">Map</a>
+    </div>
+    <div class="resourcetabcontainer">
+    <div id="resources" class="tabcontent">
+    <div class="com_bookingforconnector-merchantlist">';
+    $output = $output. theme('search_listing', array('items' => $items));
+    $output = $output. '</div>
+    </div>
+    <div id="mappa" class="tabcontent">		
+    <div id="map_canvassearch" class="searchmap" style="width:100%; min-height:400px"></div>
+    </div>
+    </div>
+    </div>';
+    return $output;
+  }
+  else {
+    $task = $_GET['task'];
+    if($task == 'GetMerchantsByIds') {
+      $lists = $_GET['merchantsId'];
+      $merchants = BFCHelper::getMerchantsByIds($lists);
+      drupal_add_http_header('Content-Type', 'application/json');
+      echo $merchants;
+    }
+    else if($task == 'getMerchantGroups') {
+      $merchantgroups = BFCHelper::getMerchantGroups();
+      drupal_json_output($merchantgroups);
+    }
+    else if($task == 'GetPhoneByMerchantId') {
+    	$merchantId = $_GET['merchantid'];
+    	$language = 'en-gb';
+      $phno = BFCHelper::GetPhoneByMerchantId($merchantId,$language);
+      drupal_json_output($phno);
+    }
+  }
+}
+
+function setSessionFromSubmittedData() {
+  $ci = BFCHelper::getStayParam('checkin', new DateTime());
+
+  $currParam = array(
+    'searchid' => $_GET['searchid'],
+	 'checkin' => BFCHelper::getStayParam('checkin', new DateTime()),
+	 'checkout' => BFCHelper::getStayParam('checkout', $ci->modify(BFCHelper::$defaultDaysSpan)),
+	 'duration' => BFCHelper::getStayParam('duration'),
+	 'paxages' => BFCHelper::getStayParam('paxages'),
+	 'masterTypeId' => isset($_GET['masterTypeId']) ? $_GET['masterTypeId'] : '',
+	 'merchantResults' => in_array($_GET['merchantCategoryId'], BFCHelper::getCategoryMerchantResults($_GET['cultureCode'])),
+	 'merchantCategoryId' => $_GET['merchantCategoryId'],
+	 'merchantId' => isset($_GET['merchantId']) ? $_GET['merchantId'] : 0,
+	 'zoneId' => isset($_GET['locationzone']) ? $_GET['locationzone'] : 0,
+	 'locationzone' => isset($_GET['locationzone']) ? $_GET['locationzone'] : 0,
+	 'cultureCode' => isset($_GET['cultureCode']) ? $_GET['cultureCode'] : 0,
+	 'paxes' => $_GET['persons'],
+	 'resourceName' =>  isset($_GET['resourceName']) ? $_GET['resourceName'] : 0,
+	 'refid' => isset($_GET['refid']) ? $_GET['refid'] : 0,
+	 'condominiumsResults' => isset($_GET['condominiumsResults']) ? $_GET['condominiumsResults'] : '',
+	 'pricerange' => isset($_GET['pricerange']) ? $_GET['pricerange'] : '',
+	 'onlystay' => $_GET['onlystay'],
+	 'resourceId' => isset($_GET['resourceId']) ? $_GET['resourceId'] : '',
+    'extras' => isset($_GET['extras']) ? $_GET['extras'] : '',
+    'packages' => isset($_GET['packages']) ? $_GET['packages'] : '',
+    'pricetype' => isset($_GET['pricetype']) ? $_GET['pricetype'] : '',
+    'rateplanId' => isset($_GET['pricetype']) ? $_GET['pricetype'] : '',
+    'variationPlanId' => isset($_GET['variationPlanId']) ? $_GET['variationPlanId'] : '',
+    'gotCalculator' => isset($_GET['gotCalculator']) ? $_GET['gotCalculator'] : '',
+    'totalDiscounted' => isset($_SESSION['search.params']['totalDiscounted']) ? $_SESSION['search.params']['totalDiscounted'] : '',
+    'suggestedstay' => isset($_SESSION['search.params']['suggestedstay']) ? $_SESSION['search.params']['suggestedstay'] : ''
+  );
+  $_SESSION['search.params'] = $currParam;
+}
+
+function seoUrl($string) {
+    //Lower case everything
+    $string = strtolower($string);
+    //Make alphanumeric (removes all other characters)
+    $string = preg_replace("/[^a-z0-9_\s-]/", "", $string);
+    //Clean up multiple dashes or whitespaces
+    $string = preg_replace("/[\s-]+/", " ", $string);
+    //Convert whitespaces and underscore to dash
+    $string = preg_replace("/[\s_]/", "-", $string);
+    return $string;
+}
+
+function accommodationdetails_resource(){
+  $resource_name = arg(2);
+  return bookingonline_packagedetail($resource_name);
+}
+
+function bookingonline_packagedetail($resource_name){
+  $args = explode('-', $resource_name);
+  $resource_id = $args[0];
+  $model = new BookingForConnectorModelResource;
+  $resource = $model->getItem($resource_id);
+  $images = array();
+
+if ($resource->ImageUrl != null && $resource->ImageUrl != '') {
+	$images[] = $resource->ImageUrl;
+}
+
+foreach(explode(',', $resource->ImageData) as $image) {
+  if (!empty($images[0]) && basename($image) != basename($images[0]) && $images[0] ) { 
+    $images[] = $image;
+  }
+}		
+
+$slider = theme('resource_gallery', array('images' => $images, 'resource' => $resource));
+$inforequest_form = drupal_get_form('merchant_inforequest_form', $resource);
+$rate_calculator = bfi_search_by_merchant_type_form_helper(TRUE, $model, $resource);
+$resource_html = theme('resource', array('resource' => $resource, 'photos_slider' => $slider, 'inforequest' => drupal_render($inforequest_form), 'rate_calculator' => $rate_calculator));
+return $resource_html;
+}
+
+function induce_price_quote_fields(&$form, &$form_state, $model, $resource) {
+  $language = 'en-gb';
+  
+  if(isset($_SESSION['search.params']['resourceId'])) {
+    $resource_id = $_SESSION['search.params']['resourceId'];
+  }
+  else {
+  	$arg2 = arg(2);
+   $args = explode('-', $arg2);
+   $resource_id = $args[0];
+   $_SESSION['search.params']['resourceId'] = $resource_id;
+  }
+  
+  $minperson   = $resource->MinCapacityPaxes;
+  $maxperson   = $resource->MaxCapacityPaxes;
+    
+  $adults = $_SESSION['search.params']['paxes'];
+  
+  if(isset($resource->UnitId)){
+    $resource->ResourceId = $resource->UnitId;
+  }
+  
+  $allstays = $model->getStay($language);
+  $price_type_options = array();
+  $price_types = array();
+  foreach($allstays as $stays) {
+    $price_type_options[$stays->RatePlanId] = $stays->Name;
+    $price_types[$stays->RatePlanId] = $stays;
+  }
+  
+  if(isset($form_state['values']['pricetype'])) {
+    $active_plan_id = $form_state['values']['pricetype'];
+  }
+  else if(isset($_SESSION['search.param']['pricetype'])) {
+  	 $active_plan_id = $_SESSION['search.param']['pricetype'];
+  }
+  else {
+    $active_plan_id = array_keys($price_type_options)[0];
+  }
+  $active_plan = $price_types[$active_plan_id];
+  
+  $suggested_stay = $active_plan->SuggestedStay;
+  unset($active_plan->SuggestedStay);
+  $suggested_stay->RatePlanStay = $active_plan;
+  $suggested_day_json = json_encode($suggested_stay);
+  $_SESSION['search.params']['suggestedstay'] = $suggested_day_json;
+  
+  $total = $price_final = BFCHelper::priceFormat($active_plan->TotalAmount);
+  $total_discounted = BFCHelper::priceFormat($active_plan->TotalDiscounted);
+  
+  $is_discounted = FALSE;
+  $price_string = '';
+  $discount_id = '';
+  if($total != $total_discounted) {
+    $is_discounted = TRUE;
+    $discount_name = $active_plan->Discount->Name;
+    $discount_id = $active_plan->Discount->VariationPlanId;
+    $price_string = $price_string. '<div class="original-price">'.$total.'</div>';
+  }
+  $price_string = $price_string. '<div class="discounted-price">'.$total_discounted.'</div>';
+  
+  $form['price_type_wrapper'] = array('#type' => 'container', '#prefix' => '<div id="price-quote">', '#suffix' => '</div>');
+  
+  $form['price_type_wrapper']['quote_form'] = array('#type' => 'hidden', '#value' => 1);
+  $form['price_type_wrapper']['resourceName'] = array('#type' => 'hidden', '#value' =>$resource->Name);
+  $form['price_type_wrapper']['variationId'] = array('#type' => 'hidden', '#value' => $discount_id);
+  $form['price_type_wrapper']['resourceId'] = array('#type' => 'hidden', '#value' => $resource_id);
+  $form['price_type_wrapper']['totalDiscounted'] = array('#type' => 'hidden', '#value' => $total_discounted);
+  
+  if($adults > $minperson - 1 && $adults < $maxperson + 1) {
+  $form['price_type_wrapper']['pricetype'] = array(
+       '#type' => 'select',
+       '#default_value' => $active_plan_id,
+       '#options' => $price_type_options,
+       '#suffix' =>  $price_string,
+       '#ajax' => array(
+         'callback' => 'change_price_types_callback',
+         'wrapper' => 'price-quote',
+       ),
+     );
+     $form['price_type_wrapper']['submit_button'] = array(
+       '#type' => 'submit',
+       '#value' => t('Submit'),
+     );
+  }
+  else {
+     $max_person_string = $minperson == $maxperson ? t('The accomodation is not available for the submitted data. Number of persons must be !number', array('!number' => $minperson)) : t('The accomodation is not available for the submitted data. Number of persons must be between !minnumber and !maxnumber', array('!minnumber' => $minperson, '!maxnumber' => $maxperson));
+     $form['price_type_wrapper']['pricetype'] = array(
+        '#type' => 'markup',
+        '#markup' => $max_person_string,
+        '#prefix' => '<div class="price-quote-div">',
+        '#suffix' => '</div>',
+        '#ajax' => array(
+        'callback' => 'change_price_types_callback',
+        'wrapper' => 'price-quote',
+      ),
+    );
+  }
+}
+
+function change_price_types_callback($form, &$form_state) {
+$_SESSION['search.params']['pricetype'] = $form_state['values']['pricetype'];
+$_SESSION['search.params']['rateplanId'] = $form_state['values']['pricetype'];
+$_SESSION['search.params']['variationPlanId'] = $form_state['values']['variation_id'];
+
+return $form['price_type_wrapper'];
+}
+
+
+
+function merchant_payment_form($form, $form_state) {
+if(!isset($form_state['values'])) {
+setSessionFromSubmittedData();
+}
+global $user;
+$arg = arg(2);
+$arg = explode("-", $arg);
+$resource_id = $arg[0];
+
+$modelresource = new BookingForConnectorModelResource;
+
+$resource = $modelresource->getItem($resource_id);
+
+$merchant = $resource->Merchant;
+
+$rateplan_id = $_SESSION['search.params']['rateplanId'];
+
+$language = 'en-gb';
+$privacy = BFCHelper::GetPrivacy($language);
+$additionalPurpose = BFCHelper::GetAdditionalPurpose($language);
+$policy = BFCHelper::GetPolicy($resource->ResourceId, $language);
+
+$deposit = 0;
+$total = $_SESSION['search.params']['totalDiscounted'];
+
+$bookingTypes = $modelresource->getMerchantBookingTypesFromService();
+$bookingTypedefault ="";
+$bookingTypesoptions = array();
+$bookingTypesValues = array();
+$bookingTypesValuesKeyed = array();
+
+if(!empty($bookingTypes)){
+	$bookingTypesDescArray = array();
+	foreach($bookingTypes as $bt) {
+		$currDesc = $bt->Name . "<div class='ccdescr'>" . $bt->Description . "</div>";
+		if($bt->AcquireCreditCardData && !empty($bt->Data)){
+			$ccimgages = explode("|", $bt->Data);
+			$cCCTypeList = array();
+			$currDesc .= "<div class='ccimages'>";
+			foreach($ccimgages as $ccimgage){
+				$currDesc .= '<i class="fa fa-cc-' . strtolower($ccimgage) . '" title="'. $ccimgage .'"></i>&nbsp;&nbsp;';
+				$cCCTypeList[$ccimgage] = $ccimgage;
+			}
+			$currDesc .= "</div>";
+ 		}
+
+
+		$bookingTypesoptions[$bt->BookingTypeId.":".$bt->AcquireCreditCardData] = $currDesc;
+		$calculatedBookingType = $bt;
+		$calculatedBookingType->Deposit = 0;
+		
+		if($calculatedBookingType->Value!='0' && $calculatedBookingType->Value!='0%' && $calculatedBookingType->Value!='100%')
+		{
+			if (strpos($calculatedBookingType->Value,'%') !== false) {
+				$calculatedBookingType->Deposit = (float)str_replace("%","",$calculatedBookingType->Value) *(float) $total/100;
+			}else{
+				$calculatedBookingType->Deposit = $calculatedBookingType->Value;
+			}
+		}
+		if($calculatedBookingType->Value==='100%'){
+			$calculatedBookingType->Deposit = $total;
+		}
+
+		$bookingTypesValues[] = $calculatedBookingType;
+      $bookingTypesValuesKeyed[$bt->BookingTypeId.":".$bt->AcquireCreditCardData] = $calculatedBookingType;
+      
+		if($bt->IsDefault == true ){
+			$bookingTypedefault = $bt->BookingTypeId.":".$bt->AcquireCreditCardData;
+			$deposit = $calculatedBookingType->Deposit;
+			$is_gateway =$calculatedBookingType->IsGateway;
+		}
+
+	}
+
+	if(empty($bookingTypedefault)) {
+		$bt = $bookingTypesValues[0];
+		$bookingTypedefault = $bt->BookingTypeId.":".$bt->AcquireCreditCardData;
+		$deposit = $bt->Deposit;
+		$is_gateway =$bt->IsGateway;
+	}
+	
+	if(isset($form_state['values']['bookingType'])) {
+		$bookingTypedefault = $form_state['values']['bookingType'];
+		$deposit =$bookingTypesValuesKeyed[$form_state['values']['bookingType']]->Deposit;
+		$is_gateway =$bookingTypesValuesKeyed[$form_state['values']['bookingType']]->IsGateway;
+	}
+  }
+
+  global $user;
+  $username   = $user->name;
+  $useremail  = $user->mail;
+  require_once DRUPAL_ROOT . '/includes/locale.inc';
+  $countries  = country_get_list();
+ 
+  $form['merchantId'] = array(
+  '#type' => 'hidden',
+  '#value' => $merchant->MerchantId,
+  );
+
+  $form['resourceId'] = array(
+  '#type' => 'hidden',
+  '#value' => $resource->ResourceId,
+  );
+
+  $form['checkout'] = array(
+  '#type' => 'hidden',
+  '#value' =>  $_SESSION['search.params']['checkin']->format('d/m/Y'),
+  );
+
+  $form['checkin'] = array(
+  '#type' => 'hidden',
+  '#value' =>  $_SESSION['search.params']['checkout']->format('d/m/Y'),
+  );
+
+  $form['Name'] = array(
+  '#type' => 'textfield',
+  '#title' => t('Name'),
+  '#size' => 60,
+  '#default_value' => $username,
+  '#maxlength' => 128,
+  '#required' => TRUE,
+  );
+
+  $form['Surname'] = array(
+  '#type' => 'textfield',
+  '#title' => t('Surname'),
+  '#size' => 60,
+  '#maxlength' => 128,
+  '#required' => TRUE,
+  );
+
+  $form['Email'] = array(
+  '#type' => 'textfield',
+  '#title' => t('Email'),
+  '#default_value' => $useremail,
+  '#size' => 60,
+  '#maxlength' => 128,
+  '#required' => TRUE,
+  );
+
+  $form['Phone'] = array(
+  '#type' => 'textfield',
+  '#title' => t('Phone'),
+  '#size' => 60,
+  '#maxlength' => 128,
+  '#required' => TRUE,
+  );
+
+  $form['Address'] = array(
+  '#type' => 'textfield',
+  '#title' => t('Street address'),
+  '#size' => 60,
+  '#maxlength' => 350,
+  );
+
+  $form['Cap'] = array(
+  '#type' => 'textfield',
+  '#title' => t('Postal Code'),
+  '#size' => 60,
+  '#maxlength' => 128,
+  );
+
+  $form['City'] = array(
+  '#type' => 'textfield',
+  '#title' => t('City'),
+  '#size' => 60,
+  '#maxlength' => 350,
+  );
+
+  $form['Provincia'] = array(
+  '#type' => 'textfield',
+  '#title' => t('Province'),
+  '#size' => 60,
+  '#maxlength' => 128,
+  );
+
+  $form['Nation'] = array(
+  '#type' => 'select',
+  '#title' => t('Nation'),
+  '#default_value' => 'IT',
+  '#options' => $countries,
+  );
+
+  $form['Culture'] = array(
+  '#type' => 'select',
+  '#title' => t('Language'),
+  '#options' => array(
+      'Italiano' => t('Italiano'),
+      'Inglese' => t('English'),
+      'Tedesco' => t('Deutsch'),
+      'Francese' => t('Fran&ccedil;ais'),
+      'Olandese' => t('Nederlands'),
+      'Danese' => t('Dansk'),
+      'Ceco' => t('Czech'),
+      'Ungherese' => t('Hungarian'),
+      'Polacco' => t('Polish'),
+      'Russo' => t('русский'),
+    ),
+  );
+
+  $form['note'] = array(
+    '#title' => t('Note'),
+    '#type' => 'textarea',
+  );
+
+  $form['bookingType'] = array(
+    '#type' => 'radios',
+    '#options' => $bookingTypesoptions,
+    '#default_value' => $bookingTypedefault,
+     '#ajax' => array(
+         'callback' => 'type_of_payment_callback',
+         'wrapper' => 'payment-type-dependent',
+       ),
+  );
+
+  $form['payment_type_dependent'] = array('#type' => 'container', '#prefix' => '<div id="payment-type-dependent">', '#suffix' => '</div>');
+  $form['payment_type_dependent']['amount-charged'] = array(
+    '#type' => 'markup',
+    '#prefix' => '<div id="show-amount-charged">',
+    '#suffix' => '</div>',
+    '#markup' => t('Total Deposit €!deposit ', array('!deposit' => $deposit)),
+  );
+  $form['payment_type_dependent']['isgateway'] = array(
+    '#type' => 'hidden',
+    '#value' => $is_gateway
+  );
+
+  $form['booking_markup'] = array(
+    '#type' => 'markup',
+    '#markup' => t('BOOKING'),
+  );
+
+  $form['payment_type_dependent']['left'] = array('#type' => 'container', '#prefix' => '<div class="payment-type-dependent">', '#suffix' => '</div>');
+  $form['payment_type_dependent']['left']['credit-card-info'] = array(
+    '#type' => 'item',
+    '#markup' => t('Credit card information to guarantee reservations'),
+    '#suffix' => '',
+  );
+
+  $form['payment_type_dependent']['left']['cc_circuito'] = array(
+  '#type' => 'select',
+  '#title' => t('Ciruit'),
+  '#options' => $cCCTypeList
+  );
+
+  $form['payment_type_dependent']['left']['cc_titolare'] = array(
+  '#type' => 'textfield',
+  '#title' => t('Holder'),
+  );
+
+  $form['payment_type_dependent']['left']['cc_numero'] = array(
+  '#type' => 'textfield',
+  '#title' => t('Number'),
+  );
+
+  $form['payment_type_dependent']['left']['cc_mese'] = array(
+  '#type' => 'textfield',
+  '#maxlength' => 2,
+  '#title' => t('Validity Month (MM)'),
+  );
+
+  $form['payment_type_dependent']['left']['partition'] = array(
+    '#type' => 'item',
+    '#markup' => '',
+    '#title' => t('/'),
+  );
+
+  $form['payment_type_dependent']['left']['cc_anno'] = array(
+  '#type' => 'textfield',
+  '#maxlength' => 2,
+  '#title' => t('Year (AA)'),
+  );
+
+  $form['payment_type_dependent']['right'] = array('#type' => 'container', '#prefix' => '<div class="span4">', '#suffix' => '</div><hr />');
+  $form['payment_type_dependent']['right']['info'] = array(
+    '#type' => 'item',
+    '#markup' => '',
+    '#title' => t('Bookingfor will not charge on your credit card . The details of your credit card is required to guarantee your reservation .'),
+  );
+
+  $form['payment_type_dependent']['right']['ssl-certi'] = array(
+    '#prefix' => '<div id="DigiCertClickID_3JbQnQ0E" data-language="en_US">',
+    '#suffix' => '</div>',
+    '#type' => 'item',
+    '#markup' => '',
+    '#title' => t('SSL Certificates'),
+  );
+
+$form['policy'] = array(
+  '#title' => t('Acceptance cancellation policy'),
+  '#type' => 'textarea',
+  '#default_value' => $policy,
+  '#attributes' => array('readonly' => 'readonly'),
+);
+
+$form['accettazionepolicy'] = array(
+  '#type' =>'checkbox',
+  '#title' => '<b>'.t('Acceptable').'</b>',
+  '#required' => TRUE,
+);
+
+$form['privacy'] = array(
+  '#title' => t('Consent to the processing of personal data'),
+  '#type' => 'textarea',
+  '#default_value' => $privacy,
+  '#attributes' => array('readonly' => 'readonly'),
+);
+
+$form['accettazione'] = array(
+  '#suffix' => '',
+  '#type' =>'checkbox',
+  '#title' => '<b>'.t('I have read the terms relating to the processing of personal data').'</b>',
+  '#required' => TRUE,
+);
+
+$form['additionalPurpose'] = array(
+  '#title' => t('Accept additional purposes'),
+  '#type' => 'textarea',
+  '#default_value' => $additionalPurpose,
+  '#attributes' => array('readonly' => 'readonly'),
+
+);
+
+$form['accettazioneadditionalPurpose'] = array(
+  '#suffix' => '',
+  '#type' =>'checkbox',
+  '#title' => '<b>'.t('Acceptable').'</b>',
+  '#required' => TRUE,
+);
+
+$form['staysuggested'] = array(
+  '#type' => 'hidden',
+  '#value' =>$_SESSION['search.params']['suggestedstay'],
+);
+
+$form['send'] = array(
+  '#suffix' => '</div>',
+  '#type' => 'submit',
+  '#value' => t('Send'),
+  '#suffix' => '',
+);
+
+  return $form;
+}
+
+function type_of_payment_callback($form, &$form_state) {
+  return $form['payment_type_dependent'];
+}
+
+function merchant_payment_form_submit($form, &$form_state) {
+  /*$source     = "http://bftest6.cloudapp.net/modules/bookingfor/services/bookingservice.svc/";
+  $api        = "MTNiZDVlOGItZTVjZC00NzMyLThmM2QtY2U4NjE1MmYwM2U1OkFMZ2wwSGJ2bjBQc1N2QVRTUkhzK0plNWFHTllOOEZCVTBnMzNrWExneTdsN0JYN2dzWmQyT2ptUDJBV1NUVVJRdz09";
+
+  $url        = $source.'/GetMerchantsById?id='.$merchantID.'&%24format=json&apikey='.$api;
+  $x          = drupal_http_request($url);
+  $merchant   = json_decode($x->data);
+
+  $merchantname = str_replace('&', 'and', strtolower($merchant->d->GetMerchantsById->Name));
+  $merchantname = str_replace(' ', '-', $merchantname);
+
+  $url       = $base_url.'/merchant-details/merchantdetails/'.$resourceID.'-'.$merchantname.'/thanks?merchantid='.$merchantID;
+  $urlerror  = $base_url.'/merchant-details/merchantdetails/'.$resourceID.'-'.$merchantname.'/error?merchantid='.$merchantID;*/
+  return sendOrder($form_state['input']);
+}
+
+
+function sendOrder($formData) {
+  $formData['orderType'] = 'a';
+  $formData['cultureCode'] = 'en-gb';
+  $customer = RSFormHelper::getCustomerData($formData);
+  $suggestedStay = json_decode($formData['staysuggested']);
+  $req = array('resourceId' => $_SESSION['search.params']['resourceId'], 'checkin' => $formData['checkin'], 'checkout' =>$formData['checkout'] , 'duration' => $_SESSION['search.params']['duration'], 'paxages' => '['.implode(',', $_SESSION['search.params']['paxages']).']', 'extras' => $_SESSION['search.params']['extras'], 'packages' => $_SESSION['search.params']['packages'], 'pricetype' => $_SESSION['search.params']['pricetype'], 'rateplanId' => $_SESSION['search.params']['rateplanId'], 'state' => 'booking' , 'variationPlanId' => $_SESSION['search.params']['variationPlanId'], 'gotCalculator' => false);
+  $redirect = $formData['Redirect'];
+  
+  $redirecterror = $formData['Redirecterror'];
+  $isgateway = $formData['isgateway'];
+
+  $otherData = "paxages:". str_replace("]", "" ,str_replace("[", "" , implode($req['paxages'], ',') ));
+  $ccdata = null;
+  if (RSFormHelper::canAcquireCCData($formData)) {
+    $ccdata = json_encode(RSFormHelper::getCCardData($formData));
+  	 $ccdata = BFCHelper::encrypt($ccdata);
+  }
+  $orderData =  BFCHelper::prepareOrderData($formData, $customer, $suggestedStay, $otherData, $ccdata);
+  $orderData['pricetype'] = $req['pricetype'];
+  $orderData['label'] = 'developerdemo';
+
+  $order = BFCHelper::setOrder(
+    $orderData['customerData'],
+    $orderData['suggestedStay'],
+    $orderData['creditCardData'],
+    $orderData['otherNoteData'],
+    $orderData['merchantId'],
+    $orderData['orderType'],
+    $orderData['userNotes'],
+    $orderData['label'],
+    $orderData['cultureCode'],
+  	 null,
+  	 $orderData['pricetype']
+  );
+  dpm($order);
+  if (!empty($order)){
+    if(!empty($isgateway) && ($isgateway =="true" ||$isgateway =="1")){
+      drupal_goto('payment', array('query' => array('orderId' => $order->OrderId)));
+	 }else{
+	   /*$numAdults = 0;
+		$persons= explode("|", $suggestedStay->Paxes);
+		foreach($persons as $person) {
+		  $totper = explode(":", $person);
+		  $numAdults += (int)$totper[1];
+		}
+		$startDate = DateTime::createFromFormat('Y-m-d',BFCHelper::parseJsonDate($order->StartDate,'Y-m-d'));
+		$endDate = DateTime::createFromFormat('Y-m-d',BFCHelper::parseJsonDate($order->EndDate,'Y-m-d'));*/
+		drupal_goto($redirect, array('query' => array('orderid' => $order->OrderId, 'merchantid' => $order->MerchantId , 'totalamount' => $order->TotalAmount *100, 'startDate' => $startDate->format('Y-m-d'), 'endDate' => $endDate->format('Y-m-d'), 'numAdults' => $numAdults)));
+	 }
+  }
+}
+
+function bfi_payment() {
+$hasPayed = null;
+$orderId = isset($_GET['orderId']) ? $_GET['orderId'] : $_GET['payedOrderId'];
+$actionmode = isset($_GET['actionmode']) ? $_GET['actionmode'] : '';
+
+$paymentModel = new BookingForConnectorModelPayment;
+$item = $paymentModel->getItem($orderId);
+$order = $item->order;
+$merchantPayments = $item->merchantPayments;
+
+$merchantPayment = $item->merchantPayment;
+$data = explode('|', $merchantPayment->Data);
+	
+if ($actionmode=="orderpayment"){
+  $item->paymentCount =  BFCHelper::getTotalOrderPayments($item->order->OrderId);
+}
+
+if ($actionmode!='' && $actionmode!='cancel' && $actionmode!='donation' && $actionmode!='orderpayment'){
+  if ($item->order->Status!=5){
+    $hasPayed = processPayment($actionmode,$order, $data);
+  }else {
+	 $hasPayed = processOrderPayment($actionmode,$item->order,$language, $data);
+  }
+}
+if ($actionmode=='' && $actionmode!='donation'){
+  if ($item->order->Status!=5){
+    $order = BFCHelper::setOrderStatus($orderId,1,false,false,'');
+    dpm($order);
+  }
+}
+if (isset($item->merchantPayment)) {
+	$merchantPayment = $item->merchantPayment;
+	$paymentSystemId = $merchantPayment->PaymentSystemId;
+
+	$paymentSystemRef = $merchantPayment->PaymentSystemName;
+	if ($actionmode=='donation') {
+	}
+	else {
+	  if ($hasPayed !==null) {
+	    if ($hasPayed) {
+	      echo '<p class="success">COM_BOOKINGFORCONNECTOR_PAYMENT_VIEW_PAY_OK</p>';
+	    }
+	    else {
+	      echo '<p class="error">COM_BOOKINGFORCONNECTOR_PAYMENT_VIEW_PAY_KO</p>';
+	    }
+	  }
+	  else {
+	    if ($actionmode=='cancel') {
+	      echo '<p class="error">COM_BOOKINGFORCONNECTOR_PAYMENT_VIEW_PAY_KO_DELETE</p>';
+	    }
+	    if($actionmode=='error' || $actionmode=='errordonation') {
+	     echo '<p class="error">COM_BOOKINGFORCONNECTOR_PAYMENT_VIEW_PAY_KO_DELETE</p></br>';
+	    }
+	    if ($actionmode!='errordonation' && $order!=null && $paymentSystemRef !=null) {
+		   if ($actionmode !='error') {
+			  $output =  call_user_func ('payment_'.$paymentSystemRef, $order, $merchantPayment);
+			}
+		}
+	  }
+	}
+}	
+return 'hii';
+}
+
+function payment_PaypalExpress($order, $merchantPayment) {
+global $base_url;
+$debugmode = true;
+$donation = false;
+$paymentData = $merchantPayment->Data;
+$url = $base_url. url('payment', array('query' => array('actionmode' => 'paypalexpress', 'payedOrderId' => $order->OrderId)));
+$urlBack = $url;
+$suffixOrder = "";
+if ($actionmode=='donation')
+{
+	$donation = true;
+}
+$paypalExpress = new paypalExpress($merchantPayment->Data, $order, 'en-gb', $urlBack, $url, $debugmode, $donation);
+return $paypalExpress->getUrl();
+}
+
+function processPayment($actionmode,$order, $data) {;
+	   $orderId = $order->OrderId;
+		$classProcessor = $actionmode . 'Processor';
+		
+		if (class_exists($classProcessor)){
+			$processor = new $classProcessor($order, null, true, $data);
+			$result = $processor->getResult(null, true);
+
+			$paymentData ='';
+			foreach($_SERVER as $key_name => $key_value) {
+				if  ($paymentData!='') $paymentData .=  '&'; 
+				$paymentData .= str_replace('$', '', $key_name) . " = " . urlencode($key_value);
+			}
+			foreach($_POST as $key_name => $key_value) {
+				if  ($paymentData!='') $paymentData .=  '&';
+				$paymentData .= str_replace('$', '', $key_name) . " = " . urlencode($key_value);
+			}			
+			if ($actionmode!="setefi"){
+				if ($result){
+					$order = BFCHelper::setOrderStatus($orderId,5,true,false,$paymentData);
+					$result = ($order!=null);
+				}else{
+					$order = BFCHelper::setOrderStatus($orderId,7,false,false,$paymentData);
+				}
+				if(method_exists($processor, 'responseRedir')){
+					$processor->responseRedir($order->OrderId, $result);
+				}
+			}
+			return $result;
+		}
+	}
+
+function processOrderPayment($actionmode,$orderId,$lang) {
+		$classProcessor = $actionmode . 'Processor';
+		
+		if (class_exists($classProcessor)){
+			$processor = new $classProcessor();
+			$result = $processor->getResult();
+			$bankId = $processor->getBankId();
+			$amount = $processor->getAmount();
+
+			$paymentData ='';
+			foreach($_SERVER as $key_name => $key_value) {
+				if  ($paymentData!='') $paymentData .=  '&'; 
+				$paymentData .= str_replace('$', '', $key_name) . " = " . urlencode($key_value);
+			}
+			foreach($_POST as $key_name => $key_value) {
+				if  ($paymentData!='') $paymentData .=  '&';
+				$paymentData .= str_replace('$', '', $key_name) . " = " . urlencode($key_value);
+			}			
+
+			if ($actionmode!="setefi"){
+				if ($result){
+					$order = BFCHelper::setOrderPayment($orderId,5,true,$amount,$bankId,$paymentData,$lang,false);
+					dpm($order);
+					$result = ($order!=null);
+				}else{
+					$order = BFCHelper::setOrderPayment($orderId,7,false,$amount,$bankId,$paymentData,$lang,false);
+					dpm($order);
+				}
+				if(method_exists($processor, 'responseRedir')){
+					$processor->responseRedir($order->OrderId, $result);
+				}			
+			}
+			return $result;
+		}
+	}
+	
+function accommodationdetails_merchantdetails(){
+  $arg2 = arg(2);
+  $comp = explode('-', $arg2);
+  $merchantId = $comp[0];
+   
+  $model =  new BookingForConnectorModelMerchantDetails;
+  $merchant = $model->getItem($merchantId);
+  if(!isset($_GET['task'])) {
+  	 $images = array();
+    if ($merchant->LogoUrl != null && $merchant->LogoUrl != '') {
+	  $images[] = $merchant->LogoUrl ;
+    }
+
+    foreach(explode(', ', $merchant->ImageData) as $image) {
+      $images[] = $image;
+    }		
+    if ($merchant->LogoUrl != null && $merchant->LogoUrl != '') {
+	  $images = array_diff($images, array($merchant->LogoUrl));
+    }
+  	 $slider = theme('merchant_gallery', array('images' => $images, 'merchant' => $merchant));
+    return theme('merchantdetails', array('merchant' => $merchant, 'slider' => $slider));
+  }
+  else {
+    $task = $_GET['task'];
+    if($task == 'getMerchantResources') {
+    	$model_resource_details = new BookingForConnectorModelMerchantDetails;
+    	$resources = $model_resource_details->getItems('resourcesajax', $merchantId);
+    	$output = '';
+    	$output = $output . '<div class="com_bookingforconnector_merchantdetails com_bookingforconnector_merchantdetails-t">';
+    	if ($resources != null) {
+	   $output = $output . '<div class="com_bookingforconnector_merchantdetails-resources">';
+		foreach($resources as $resource) {
+        $output = $output . theme('ajaxresources', array('resource' => $resource, 'merchant' => $merchant));
+		}
+	   $output = $output . '</div>';
+      $output = $output . '</div>';
+      }
+    }
+  }
+  
+  echo $output;
+}	
+
+function accommodationdetails_reviews() {
+  $merchant_name = arg(2);
+  $parts = explode('-', $merchant_name);
+  $merchant_id = $parts[0];
+
+  $model = new BookingForConnectorModelMerchantDetails;
+  $merchant = $model->getItem($merchant_id);
+  $summaryRatings = $model->getMerchantRatingAverageFromService($merchant_id);
+  
+  $ratings = $model->getItemsRating($merchant_id);
+  return  theme('merchantreviews', array('merchant' => $merchant, 'summaryRatings' => $summaryRatings, 'ratings' => $ratings));
+}
+
+function accommodationdetails_review() {
+  $form = drupal_get_form('merchant_rating_form');
+  return drupal_render($form);
+}
+
+function merchant_rating_form($form, $form_state) {
+  global $user;
+  require_once DRUPAL_ROOT . '/includes/locale.inc';
+  $countries  = country_get_list();
+
+  $merchant_name = arg(2);
+  $parts = explode('-', $merchant_name);
+  $merchant_id = $parts[0];
+  
+  $form['merchantid'] = array(
+    '#type' => 'hidden',
+    '#value' => $merchant_id,
+  );
+  $form['name'] = array(
+    '#type' => 'textfield',
+    '#title' => 'Name',
+    '#default_value' => isset($form_state['values']['name']) ? $form_state['values']['name'] : $user->name,
+  );
+  $form['city'] = array(
+    '#type' => 'textfield',
+    '#title' => 'City',
+    '#default_value' => isset($form_state['values']['city']) ? $form_state['values']['city'] : '',
+  );
+  $options = array('1' => 'Solo travellers', '2' => 'Groups', '3' => 'Young couplet', '4' => 'Mature couples', '5' => 'Families with young children', '6' => 'Family with older children');
+  $form['typologyid'] = array(
+    '#type' => 'select',
+    '#title' => 'Type of traveller',
+    '#options' => $options,
+    '#default_value' => isset($form_state['values']['typologyid']) ? $form_state['values']['typologyid'] : '',
+  );
+  $form['nation'] = array(
+    '#type' => 'select',
+    '#title' => 'Country',
+    '#options' => $countries,
+    '#default_value' => isset($form_state['values']['nation']) ? $form_state['values']['nation'] : '',
+  );
+  $form['email'] = array(
+    '#type' => 'textfield',
+    '#title' => 'E-mail',
+    '#required' => TRUE,
+    '#default_value' => isset($form_state['values']['email']) ? $form_state['values']['email'] : $user->mail,
+  );
+  $form['email2'] = array(
+    '#type' => 'textfield',
+    '#title' => 'Confirm E-mail',
+    '#required' => TRUE,
+    '#default_value' => isset($form_state['values']['email2']) ? $form_state['values']['email2'] : $user->mail,
+  );
+
+  $form['star_ratings'] = array(
+    '#type' => 'markup',
+    '#markup' => '<div class="row-fluid">
+			<div class="span4">
+				Staff:
+					<input type="hidden" id="hfvalue1" name="hfvalue1" value="6">
+					<span id="starscap1">6</span><br />
+					<input title="1" type="radio" value="1" name="personale" class="starswrapper1 required">
+					<input title="2" type="radio" value="2" name="personale" class="starswrapper1">
+					<input title="3" type="radio" value="3" name="personale" class="starswrapper1">
+					<input title="4" type="radio" value="4" name="personale" class="starswrapper1">
+					<input title="5" type="radio" value="5" name="personale" class="starswrapper1">
+					<input title="6" type="radio" checked value="6" name="personale" class="starswrapper1">
+					<input title="7" type="radio" value="7" name="personale" class="starswrapper1">
+					<input title="8" type="radio" value="8" name="personale" class="starswrapper1">
+					<input title="9" type="radio" value="9" name="personale" class="starswrapper1">
+					<input title="10" type="radio" value="10" name="personale" class="starswrapper1">
+				<br />
+				Services:
+					<input type="hidden" id="hfvalue2" name="hfvalue2" value="6">
+					<span id="starscap2">6</span><br />
+					<input title="1" type="radio" value="1" name="servizi" class="starswrapper2 required">
+					<input title="2" type="radio" value="2" name="servizi" class="starswrapper2">
+					<input title="3" type="radio" value="3" name="servizi" class="starswrapper2">
+					<input title="4" type="radio" value="4" name="servizi" class="starswrapper2">
+					<input title="5" type="radio" value="5" name="servizi" class="starswrapper2">
+					<input title="6" type="radio" checked value="6" name="servizi" class="starswrapper2">
+					<input title="7" type="radio" value="7" name="servizi" class="starswrapper2">
+					<input title="8" type="radio" value="8" name="servizi" class="starswrapper2">
+					<input title="9" type="radio" value="9" name="servizi" class="starswrapper2">
+					<input title="10" type="radio" value="10" name="servizi" class="starswrapper2">
+				<br />
+				Clean:
+					<input type="hidden" id="hfvalue3" name="hfvalue3" value="6">
+					<span id="starscap3">6</span><br />
+					<input title="1" type="radio" value="1" name="pulizia" class="starswrapper3 required">
+					<input title="2" type="radio" value="2" name="pulizia" class="starswrapper3">
+					<input title="3" type="radio" value="3" name="pulizia" class="starswrapper3">
+					<input title="4" type="radio" value="4" name="pulizia" class="starswrapper3">
+					<input title="5" type="radio" value="5" name="pulizia" class="starswrapper3">
+					<input title="6" type="radio" checked value="6" name="pulizia" class="starswrapper3">
+					<input title="7" type="radio" value="7" name="pulizia" class="starswrapper3">
+					<input title="8" type="radio" value="8" name="pulizia" class="starswrapper3">
+					<input title="9" type="radio" value="9" name="pulizia" class="starswrapper3">
+					<input title="10" type="radio" value="10" name="pulizia" class="starswrapper3">
+			</div>
+			<div class="span4">
+				Confort:
+					<input type="hidden" id="hfvalue4" name="hfvalue4" value="6">
+					<span id="starscap4">6</span><br />
+					<input title="1" type="radio" value="1" name="comfort" class="starswrapper4 required">
+					<input title="2" type="radio" value="2" name="comfort" class="starswrapper4">
+					<input title="3" type="radio" value="3" name="comfort" class="starswrapper4">
+					<input title="4" type="radio" value="4" name="comfort" class="starswrapper4">
+					<input title="5" type="radio" value="5" name="comfort" class="starswrapper4">
+					<input title="6" type="radio" checked value="6" name="comfort" class="starswrapper4">
+					<input title="7" type="radio" value="7" name="comfort" class="starswrapper4">
+					<input title="8" type="radio" value="8" name="comfort" class="starswrapper4">
+					<input title="9" type="radio" value="9" name="comfort" class="starswrapper4">
+					<input title="10" type="radio" value="10" name="comfort" class="starswrapper4">
+				<br />
+				Value for money:
+					<input type="hidden" id="hfvalue5" name="hfvalue5" value="6">
+					<span id="starscap5">6</span><br />
+					<input title="1" type="radio" value="1" name="rapporto" class="starswrapper5 required">
+					<input title="2" type="radio" value="2" name="rapporto" class="starswrapper5">
+					<input title="3" type="radio" value="3" name="rapporto" class="starswrapper5">
+					<input title="4" type="radio" value="4" name="rapporto" class="starswrapper5">
+					<input title="5" type="radio" value="5" name="rapporto" class="starswrapper5">
+					<input title="6" type="radio" checked value="6" name="rapporto" class="starswrapper5">
+					<input title="7" type="radio" value="7" name="rapporto" class="starswrapper5">
+					<input title="8" type="radio" value="8" name="rapporto" class="starswrapper5">
+					<input title="9" type="radio" value="9" name="rapporto" class="starswrapper5">
+					<input title="10" type="radio" value="10" name="rapporto" class="starswrapper5">
+			</div>
+			<div class="span4 text-center">
+				<div class="com_bookingforconnector_rating_valuation">
+					<div >Valuation</div>
+					<div class="com_bookingforconnector_rating_value" id="totale">6</div>
+					<input type="hidden" id="hftotale" name="hftotale" value="6">
+				</div>
+			</div>
+		</div>',
+  );
+  $form['pregi'] = array(
+    '#title' => 'List of the facility\'s positive points',
+    '#type' => 'textarea',
+  );
+ $form['difetti'] = array(
+    '#title' => 'List of the facility\'s negative points',
+    '#type' => 'textarea',
+  );
+  $form['submit'] = array(
+    '#type' => 'submit',
+    '#value' => 'Send',
+  );
+  return $form;
+}
+
+function merchant_rating_form_submit($form, $form_state) {
+  dpm($form_state['input']);
+  global $user;
+  $name= $form_state['input']['name'];
+  $city= $form_state['input']['city'];
+  $typologyid= $form_state['input']['typologyid'];
+		$nation= $form_state['input']['nation']; // JRequest::getVar('nation');
+		$email= $form_state['input']['email'];
+		$value1=$form_state['input']['hfvalue1'];
+		$value2= $form_state['input']['hfvalue2'];
+		$value3= $form_state['input']['hfvalue3'];
+		$value4= $form_state['input']['hfvalue4'];
+		$value5= $form_state['input']['hfvalue5'];
+		$totale= $form_state['input']['hftotale'];
+		$pregi= $form_state['input']['pregi'];
+		$difetti= $form_state['input']['difetti'];
+		$merchantId= $form_state['input']['merchantid'];
+		$label= $form_state['input']['label'];
+		$user = $user;
+		$cultureCode = 'en-gb';
+		$userId=null;
+		if ($user->uid != 0) {
+			$userId=$user->uid ;
+		}
+		$checkin= $_SESSION['search.params']['checkin']->format('m/d/Y');
+		$resourceId= $_SESSION['search.params']['resourceId'];
+		$hashorder= $form_state['input']['hashorder'];
+		$orderId = null;
+		if (empty($resourceId)){
+			$resourceId = null;
+		}
+		if (!empty($hashorder)){
+			$orderId = BFCHelper::decrypt($hashorder);
+			if (!is_numeric($orderId))
+			{
+				$orderId = null;
+			}
+		}
+
+		$return = BFCHelper::setRating($name, $city, $typologyid, $email, $nation, $merchantId,$value1, $value2, $value3, $value4, $value5, $totale, $pregi, $difetti, $userId, $cultureCode, $checkin, $resourceId, $orderId, $label);	
+		if ($return < 1){
+			drupal_set_message('There was some issue posting your review. Please try back later.');
+		}
+		else {
+         drupal_set_message('Your review was succesfully posted.');		
+		}
+}
+
+function merchant_inforequest_form($form, $form_state, $resource) {
+  $merchant = $resource->Merchant;
+  global $user;
+  $username   = $user->name;
+  $useremail  = $user->mail;
+  require_once DRUPAL_ROOT . '/includes/locale.inc';
+  $countries  = country_get_list();
+  $language = 'en-gb';
+  $privacy = BFCHelper::GetPrivacy($language);
+  
+  $form['merchantId'] = array(
+  '#type' => 'hidden',
+  '#value' => $merchant->MerchantId,
+  );
+  
+  $form['resourceId'] = array(
+  '#type' => 'hidden',
+  '#value' => $resource->ResourceId,
+  );
+  
+  $form['Redirect'] = array(
+  '#type' => 'hidden',
+  '#value' => url('merchant-details/merchantdetails/'.$merchant->MerchantId.'-'.seoUrl($merchant->Name).'/thanks'),
+  );
+  
+  $form['label'] = array(
+  '#type' => 'hidden',
+  '#value' => 'developerdemo',
+  );
+  
+  $form['orderType'] = array(
+  '#type' => 'hidden',
+  '#value' => 'c',
+  );
+  
+  $form['cultureCode'] = array(
+  '#type' => 'hidden',
+  '#value' => 'en-gb',
+  );
+  
+  $form['Name'] = array(
+  '#type' => 'textfield',
+  '#title' => t('Name'),
+  '#size' => 60,
+  '#default_value' => $username,
+  '#maxlength' => 128,
+  '#required' => TRUE,
+  );
+
+  $form['Surname'] = array(
+  '#type' => 'textfield',
+  '#title' => t('Surname'),
+  '#size' => 60,
+  '#maxlength' => 128,
+  '#required' => TRUE,
+  );
+
+  $form['Email'] = array(
+  '#type' => 'textfield',
+  '#title' => t('Email'),
+  '#default_value' => $useremail,
+  '#size' => 60,
+  '#maxlength' => 128,
+  '#required' => TRUE,
+  );
+
+  $form['Phone'] = array(
+  '#type' => 'textfield',
+  '#title' => t('Phone'),
+  '#size' => 60,
+  '#maxlength' => 128,
+  '#required' => TRUE,
+  );
+
+  $form['Address'] = array(
+  '#type' => 'textfield',
+  '#title' => t('Street address'),
+  '#size' => 60,
+  '#maxlength' => 350,
+  );
+
+  $form['Cap'] = array(
+  '#type' => 'textfield',
+  '#title' => t('Postal Code'),
+  '#size' => 60,
+  '#maxlength' => 128,
+  );
+
+  $form['City'] = array(
+  '#type' => 'textfield',
+  '#title' => t('City'),
+  '#size' => 60,
+  '#maxlength' => 350,
+  );
+
+  $form['Provincia'] = array(
+  '#type' => 'textfield',
+  '#title' => t('Province'),
+  '#size' => 60,
+  '#maxlength' => 128,
+  );
+
+  $form['Nation'] = array(
+  '#type' => 'select',
+  '#title' => t('Nation'),
+  '#default_value' => 'IT',
+  '#options' => $countries,
+  );
+
+  $form['Culture'] = array(
+  '#type' => 'select',
+  '#title' => t('Language'),
+  '#options' => array(
+      'Italiano' => t('Italiano'),
+      'Inglese' => t('English'),
+      'Tedesco' => t('Deutsch'),
+      'Francese' => t('Fran&ccedil;ais'),
+      'Olandese' => t('Nederlands'),
+      'Danese' => t('Dansk'),
+      'Ceco' => t('Czech'),
+      'Ungherese' => t('Hungarian'),
+      'Polacco' => t('Polish'),
+      'Russo' => t('русский'),
+    ),
+  );
+
+  $form['CheckIn'] = array(
+  '#type' => 'date_popup',
+  '#title' => 'Check In',
+  '#default_value' =>  $_SESSION['search.params']['checkin']->format('Y-m-d'),
+  '#date_format' => 'Y-m-d',
+  );
+  
+  $form['CheckOut'] = array(
+    '#type' => 'date_popup',
+    '#title' => 'Check Out',
+    '#default_value' =>  $_SESSION['search.params']['checkout']->format('Y-m-d'),
+    '#date_format' => 'Y-m-d',
+  );
+
+  $form['Totpersons'] = array(
+    '#type' => 'select',
+    '#options' => array(1,2,3,4,5,6,7,8,9,10),
+    '#title' => 'Number of Persons',
+    '#default_value' =>  $_SESSION['search.params']['paxes'],
+  );
+  
+  $form['note'] = array(
+    '#title' => t('Note'),
+    '#type' => 'textarea',
+  );
+
+  $form['privacy'] = array(
+    '#prefix' => '<div class="row-fluid"><div class="span12">',
+    '#suffix' => '</div>
+    </div>',
+    '#title' => t('Consent to the processing of personal data'),
+    '#type' => 'textarea',
+    '#default_value' => $privacy,
+    '#attributes' => array('readonly' => 'readonly'),
+  );
+
+  $form['accettazione'] = array(
+    '#suffix' => '',
+    '#type' =>'checkbox',
+    '#title' => '<b>'.t('I have read the terms relating to the processing of personal data').'</b>',
+    '#required' => TRUE,
+  );
+  
+  $form['send'] = array(
+    '#suffix' => '</div>',
+    '#type' => 'submit',
+    '#value' => t('Send'),
+    '#suffix' => '',
+  );
+
+  return $form;
+}
+
+function merchant_inforequest_form_submit($form, $form_state) {
+  $formData = $form_state['input'];
+
+  $customer = RSFormHelper::getCustomerData($formData);
+  $suggestedStay = null;
+		
+  $redirect = $formData['Redirect'];
+
+  $otherData = "persone:".RSFormHelper::getOptionsFromSelect($formData,'Totpersons')."|"
+					."accettazione:".RSFormHelper::getOptionsFromSelect($formData,'accettazione');
+
+  if (!empty($formData['CheckIn']) && !empty($formData['CheckOut'])) {
+    $sStay = array(
+	   'CheckIn' => DateTime::createFromFormat('Y-m-d',$formData['CheckIn']['date'])->format('Y-m-d\TH:i:sO'),
+	   'CheckOut' => DateTime::createFromFormat('Y-m-d',$formData['CheckOut']['date'])->format('Y-m-d\TH:i:sO'),
+		'UnitId' => $formData['resourceId']
+	 );
+
+					$suggestedStay = new stdClass(); 
+					foreach ($sStay as $key => $value) 
+					{ 
+						$suggestedStay->$key = $value; 
+					}
+					$otherData .= "|" . "CheckIn:" . DateTime::createFromFormat('Y-m-d',$formData['CheckIn']['date'])->format('Y-m-d') . "|" ."CheckOut:" . DateTime::createFromFormat('Y-m-d',$formData['CheckOut']['date'])->format('Y-m-d') . "|" . "UnitId:" . $formData['resourceId'];
+				}else{
+			if (!empty($formData['resourceId']))  {
+					$sStay = array(
+								'UnitId' => $formData['resourceId']
+							);
+
+					$suggestedStay = new stdClass(); 
+					foreach ($sStay as $key => $value) 
+					{ 
+						$suggestedStay->$key = $value; 
+					}
+					$otherData .= "|" . "UnitId:" . $formData['resourceId'];
+				}
+			}	
+		$orderData =  BFCHelper::prepareOrderData($formData, $customer, $suggestedStay, $otherData, null);
+
+		$orderData['processOrder'] = true;
+		$orderData['label'] = $formData['label'];
+
+		$return = BFCHelper::setInfoRequest(
+					$orderData['customerData'], 
+					$orderData['suggestedStay'],
+					$orderData['otherNoteData'], 
+					$orderData['merchantId'], 
+					$orderData['orderType'], 
+					$orderData['userNotes'], 
+					$orderData['label'], 
+					$orderData['cultureCode'],
+					$orderData['processOrder']
+					);	
+		if (!empty($return)){
+			drupal_set_message('Your Info Request was placed succesfully');
+			drupal_goto($redirect);
+		} 
+}
+
+function accommodationdetails_thanks() {
+  $merchant_name = arg(2);
+  $args = explode('-', $merchant_name);
+  $merchant_id = $args[0];
+  $model = new BookingForConnectorModelMerchantDetails;
+  $merchant = $model->getItem($merchant_id);
+  $output = '';
+  
+  $output = $output . '<div class="com_bookingforconnector_merchantdetails">
+	<h2 class="com_bookingforconnector_merchantdetails-name">'.$merchant->Name.' 
+		<span class="com_bookingforconnector_merchantdetails-rating com_bookingforconnector_merchantdetails-rating'.$merchant->Rating.'">
+			<span class="com_bookingforconnector_merchantdetails-ratingText">Rating '.$merchant->Rating.'</span>
+		</span>
+	</h2>
+	<div class="com_bookingforconnector_merchantdetails-contacts">
+	Your request was sent correctly.
+   Our staff will contact you as soon as possible, thanks .
+	</div>
+</div>';
+  return $output;
+}

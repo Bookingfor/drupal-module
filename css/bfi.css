@@ -1,0 +1,1452 @@
+.text-center{
+	text-align: center;
+}
+.clearboth{
+	clear:both;
+}
+
+.com_bookingforconnector_resource-img, .com_bookingforconnector-merchantlist-logo {
+	float: left;
+	margin-right: 10px; 
+	margin-top:0px;
+	margin-right:10px;
+	margin-bottom:0px;
+	border:1px solid #E0E0E0;
+
+}
+.com_bookingforconnector_resource_logomerchant{
+	width:100%;
+}
+.com_bookingforconnector_search-title{
+	font-size:180%;
+}
+
+.com_bookingforconnector_search-merchant,.com_bookingforconnector_search-resource{
+	margin-bottom:15px;
+}
+
+.com_bookingforconnector_search-merchant-resources{
+}
+
+.com_bookingforconnector_search-merchant-resource {
+	font-size:12px;
+	color:#7b7b7b;
+	background:#eff0f1;
+	min-height:60px;
+	border:1px solid #ffffff;
+	border-bottom:1px solid #dadada;
+}
+.width1{
+	width:1px;
+	display:inline-block;
+}
+.minheight34{
+	min-height: 34px !important;
+	padding-top:7px !important;
+}
+.nominheight{
+	min-height:0;
+}
+.com_bookingforconnector_search-merchant-resource1 {
+	background:white;
+}
+.com_bookingforconnector_search-resource .com_bookingforconnector_merchantdetails-resource-spec,
+.com_bookingforconnector_search-resource .com_bookingforconnector_merchantdetails-resource-specs {
+	height:25px;
+	line-height:25px;
+}
+
+
+.com_bookingforconnector_search-merchant-resources .com_bookingforconnector_merchantdetails-resource-spec,
+.com_bookingforconnector_search-merchant-resources .com_bookingforconnector_merchantdetails-resource-specs {
+	height:25px;
+	line-height:25px;
+}
+
+.com_bookingforconnector_merchantdetails-resource-paxeslabel {
+	display:none;
+}
+
+.com_bookingforconnector_merchantdetails-resource-spec, .com_bookingforconnector-merchantlist-merchant-spec {
+	border-left:1px solid #dadada;
+}
+
+.com_bookingforconnector_merchantdetails-resource-spec:first-child, .com_bookingforconnector-merchantlist-merchant-spec:first-child {
+	border-left:none;
+}
+
+.com_bookingforconnector-merchantlist-merchant-phone {
+	background:url('../images/custom/telefono.png') no-repeat 10px 50%;
+	padding-left:35px;
+}
+
+
+.com_bookingforconnector_merchantdetails-resource-paxes {
+	padding-left:35px;
+	min-height:25px;
+	padding-top:5px;
+	background:url('../images/custom/paxes.png') no-repeat 10px 50%;
+}
+.com_bookingforconnector_merchantdetails-resource-paxes2 {
+}
+
+.com_bookingforconnector_merchantdetails-resource-rooms {
+	padding-left:35px !important;
+	min-height:25px;
+	padding-top:5px;
+	background:url('../images/custom/rooms.png') no-repeat 10px 50%;
+}
+
+.com_bookingforconnector_merchantdetails-resource-area {
+	padding-left:40px !important;
+	min-height:25px;
+	padding-top:5px;
+	background:url('../images/custom/area.png') no-repeat 10px 50%;
+}
+
+.com_bookingforconnector-merchantlist-merchant-price {
+	background:url('../images/custom/money.png') no-repeat 10px 50%;
+	/*padding-left:10px;*/
+	padding-left:35px;
+}
+
+.com_bookingforconnector-merchantlist-merchant-name {
+	background:url('../images/custom/home.png') no-repeat 10px 50%;
+	/*padding-left:10px;*/
+	padding-left:35px;
+}
+.com_bookingforconnector_merchantdetails-resource-address, 
+.com_bookingforconnector-merchantlist-merchant-address, 
+.com_bookingforconnector_merchantdetails-address,
+.com_bookingforconnector_resource-address {
+	display:inline;
+	height:20px;
+	line-height:20px;
+	padding-top:2px;
+	padding-bottom:3px;
+	color:#7b7b7b;
+	font-size:14px;
+}
+
+.com_bookingforconnector_merchantdetails-resource-avail {
+	padding-left:10px;
+	padding-top:5px;
+	min-height:25px;
+	color:#009512;
+}
+
+.com_bookingforconnector_merchantdetails-resource-avail1, .com_bookingforconnector_merchantdetails-resource-avail2, .com_bookingforconnector_merchantdetails-resource-avail3 {
+	color:#ff0000;
+}
+
+.alignvertical{
+	padding:10px 0;
+}
+
+.com_bookingforconnector_merchantdetails-resource-link, .com_bookingforconnector-merchantlist-merchant-link {
+	position:absolute;
+	right:0;
+	top:0;
+	display:block;
+	padding:0;
+	margin:0;
+	height:33px;
+	border:1px solid #8ab55b;
+}
+
+.com_bookingforconnector_merchantdetails-resource-link-anchor, .com_bookingforconnector-merchantlist-merchant-link-anchor {
+	display:block;
+	height:21px;
+	padding:5px 10px;
+	border:1px solid #bddd73;
+	color:white !important;
+	font-size:150%;
+	font-weight:bold;
+	background-color:#a2cf3d;
+	line-height:21px;
+	font-family: "abelregular", Arial, sans-serif;
+}
+
+.com_bookingforconnector_merchantdetails-resource-link-anchor:hover, .com_bookingforconnector-merchantlist-merchant-link-anchor:hover {
+	text-decoration:none;
+}
+
+.com_bookingforconnector_merchantdetails-resource-desc, .com_bookingforconnector-merchantlist-merchant-desc {
+	margin-top:10px !important;
+	min-height:50px;
+/*
+	min-height:48px;
+	overflow:hidden;
+	height:48px;
+}
+.com_bookingforconnector_merchantdetails-resource-desc-ext, .com_bookingforconnector-merchantlist-merchant-desc-ext {
+	height:140px;
+	min-height:140px;
+*/
+}
+
+a.com_bookingforconnector_merchantdetails-resource-moreinfo, a.com_bookingforconnector-merchantlist-merchant-moreinfo {
+	text-decoration:underline;
+	/*font-size:120%;*/
+	display:inline-block;
+}
+
+.com_bookingforconnector_merchantdetails-resource-open .com_bookingforconnector_merchantdetails-resource-desc,
+.com_bookingforconnector-merchantlist-merchant-open .com_bookingforconnector-merchantlist-merchant-desc
+{
+	overflow:inherit;
+	height:inherit;
+}
+
+.com_bookingforconnector_merchantdetails-resource-open .com_bookingforconnector_merchantdetails-resource-features,
+.com_bookingforconnector-merchantlist-merchant-open .com_bookingforconnector-merchantlist-merchant-features
+{
+	height:auto;
+}
+.com_bookingforconnector_merchantdetails-resource-features,
+.com_bookingforconnector-merchantlist-merchant-features
+{
+	padding-top:5px;
+	padding-left:5px;
+}
+.com_bookingforconnector_merchantdetails-resource-features{
+	position:relative;
+}
+.com_bookingforconnector_merchantdetails-resource-features .addtofavorites{
+	display:block;
+	position:absolute;
+	top:0px;
+	left:0px;
+	width:40px;
+	height:44px;
+	background:url(../images/addfav.png) center center no-repeat;
+
+}
+.com_bookingforconnector_merchantdetails-resource-features .ribbonnew{
+	display:block;
+	position:absolute;
+	top:1px;
+	left:0px;
+	width:78px;
+	height:76px;
+	background:url(../images/ribbonnew.png) center center no-repeat;
+
+}
+.com_bookingforconnector_merchantdetails-resource-features .ribbonoffer{
+	display:block;
+	position:absolute;
+	top:1px;
+	left:0px;
+	width:78px;
+	height:76px;
+	background:url(../images/ribbonoffer.png) center center no-repeat;
+
+}
+
+.com_bookingforconnector_merchantdetails-resource-features .borderimg{
+	display:block;
+	position:absolute;
+	top:6px;
+	left:6px;
+	width:153px;
+	height:153px;
+	border:10px solid #ffffff;
+}
+.com_bookingforconnector_merchantdetails-resource-features .lensimg{
+	display:block;
+	position:absolute;
+	bottom:10px;
+	top:6px;
+	left:6px;
+	width:150px;
+	height:150px;
+	background:url(../images/lens.png) 90% 90% no-repeat;
+	background-color: transparent;
+	cursor: pointer;
+}
+
+.com_bookingforconnector_merchantdetails-resource-features .lensimg:hover{
+	background-color: rgba(0, 0, 0, 0.3);
+}
+
+.com_bookingforconnector_merchantdetails-resource-features .showcaseresource{
+	color:#ffffff;
+	background-color:rgba(255,0,0,0.7);
+	padding:0 10px;
+	margin-right:10px;
+	text-transform:uppercase;
+	font-size: 14px;
+	line-height: 24px;
+	font-family: "OldSansBlack",Arial,Helvetica,sans-serif
+
+}
+.com_bookingforconnector_merchantdetails-resource-features .topresource{
+	color:#ffffff;
+	background-color:#01b31f;
+	padding:0 10px;
+	margin-right:10px;
+	text-transform:uppercase;
+	font-size: 14px;
+	line-height: 24px;
+	font-family: "OldSansBlack",Arial,Helvetica,sans-serif
+
+}
+.com_bookingforconnector_merchantdetails-resource-features .newbuildingresource{
+	color:#01B31F;
+	font-weight: normal;
+	font-size: 14px;
+	line-height: 24px;
+	font-family: "OldSansBlack",Arial,Helvetica,sans-serif
+}
+.com_bookingforconnector_merchantdetails-resource-features .contracttyperesource{
+	color:#f47920;
+	font-weight: normal;
+	font-size: 14px;
+	line-height: 24px;
+	font-family: "OldSansBlack",Arial,Helvetica,sans-serif
+}
+
+.com_bookingforconnector_merchantdetails-resource-name{
+	font-weight:normal;
+	line-height: 1.2;
+	margin-bottom: 0px;
+	margin-top: 0px;
+	padding-top:5px;
+	padding-bottom:5px;
+	padding-left:0px;
+}
+
+.com_bookingforconnector_logo_img{
+	max-width:100px;
+	max-height:100px;
+}
+
+.minhlist{
+	min-height:185px !important;
+}
+
+.com_bookingforconnector_merchantdetails-resource-open a.com_bookingforconnector_merchantdetails-resource-moreinfo,
+.com_bookingforconnector-merchantlist-merchant-open a.com_bookingforconnector-merchantlist-merchant-moreinfo,
+{
+	margin-bottom:10px;
+}
+
+.com_bookingforconnector_merchantdetails-resource-open a.com_bookingforconnector_merchantdetails-resource-moreinfo:before,
+.com_bookingforconnector-merchantlist-merchant-open a.com_bookingforconnector-merchantlist-merchant-moreinfo:before
+{
+	content:'- ';
+}
+
+a.com_bookingforconnector_merchantdetails-resource-moreinfo:before,
+a.com_bookingforconnector-merchantlist-merchant-moreinfo:before
+{
+	content:'+ ';
+}
+
+.com_bookingforconnector_merchantdetails-ratingText {
+	display:none;
+}
+
+
+.com_bookingforconnector_merchantdetails-rating {
+	/*display:none;*/
+	display:inline-block;
+	background:url('../images/custom/star.png') 0 repeat-x;
+	height:17px;
+}
+
+.com_bookingforconnector_merchantdetails-rating1 {
+	width:17px; /* 1 star */
+}
+
+.com_bookingforconnector_merchantdetails-rating2 {
+	width:34px; /* 2 star */
+}
+
+.com_bookingforconnector_merchantdetails-rating3 {
+	width:51px; /* 3 star */
+}
+
+.com_bookingforconnector_merchantdetails-rating4 {
+	width:68px; /* 4 star */
+}
+
+.com_bookingforconnector_merchantdetails-rating5 {
+	width:85px; /* 5 star */
+}
+.com_bookingforconnector_merchantdetails-resourcerating {
+	display:none; /* hidden by default */
+	background:url('../images/custom/marchio_qualita.png') 0 repeat-x;
+	height:20px;
+	line-height:20px;
+}
+
+.com_bookingforconnector_merchantdetails-resourcerating1 {
+	width:17px; /* 1 star */
+}
+
+.com_bookingforconnector_merchantdetails-resourcerating2 {
+	width:34px; /* 2 star */
+}
+
+.com_bookingforconnector_merchantdetails-resourcerating3 {
+	width:51px; /* 3 star */
+}
+
+.com_bookingforconnector_merchantdetails-resourcerating4 {
+	width:68px; /* 4 star */
+}
+
+.com_bookingforconnector_merchantdetails-resourcerating5 {
+	width:85px; /* 5 star */
+}
+
+/* show rating only for those merchants belonging to specific categories */
+.com_bookingforconnector_merchantdetails-resource-t2 .com_bookingforconnector_merchantdetails-resourcerating, 	/* agenzie */
+.com_bookingforconnector_merchantdetails-resource-t7 .com_bookingforconnector_merchantdetails-resourcerating, 	/* agenzie */
+.com_bookingforconnector_merchantdetails-resource-t8 .com_bookingforconnector_merchantdetails-resourcerating, 	/* agenzie */
+.com_bookingforconnector_merchantdetails-resource-t9 .com_bookingforconnector_merchantdetails-resourcerating, 	/* agenzie */
+.com_bookingforconnector-merchantlist-merchant-t1 .com_bookingforconnector_merchantdetails-rating, 	/* hotel */
+.com_bookingforconnector-merchantlist-merchant-t5 .com_bookingforconnector_merchantdetails-rating, 	/* aparthotel */
+.com_bookingforconnector_merchantdetails-t1 .com_bookingforconnector_merchantdetails-rating, 		/* hotel */
+.com_bookingforconnector_merchantdetails-t5 .com_bookingforconnector_merchantdetails-rating,  		/* aparthotel */
+.mod_bookingforsearchfilter_star .com_bookingforconnector_merchantdetails-rating,  		/* Filtri */
+.mod_bookingforsearchfilter_star .com_bookingforconnector_merchantdetails-resourcerating  		/* Filtri */
+{
+	display:inline-block;
+}
+
+.com_bookingforconnector_merchantdetails, .com_bookingforconnector_merchantdetails-contacts {
+	position:relative;
+}
+
+.com_bookingforconnector_merchantdetails .com_bookingforconnector_merchantdetails-logo {
+	position:absolute;
+	top:0;
+	right:0;
+}
+.com_bookingforconnector_search-merchant .com_bookingforconnector_merchantdetails-resource-link, .com_bookingforconnector_search-resource .com_bookingforconnector_merchantdetails-resource-link {
+	right:10px;
+	top:50%;
+	margin-top:-16px;
+}
+
+.com_bookingforconnector_merchantdetails-resource-stay {
+	position:absolute;
+	right:130px;
+	top:0;
+	display:inline-block;
+	padding:10px;
+	margin:0;
+	height:41px;
+	border-left:1px solid #dadada;
+	text-align:right;
+}
+
+.com_bookingforconnector_resource-quote {
+	position:relative;
+	padding:0;
+	border:0;
+	right:auto;
+	top:auto;
+	width:auto;
+	height:auto;
+	text-align:left;
+}
+
+.com_bookingforconnector_resource-quote-desc {
+	text-align:right;
+	margin-bottom:20px;
+}
+
+.com_bookingforconnector_resource-quote .com_bookingforconnector_merchantdetails-resource-link {
+	position:inherit;
+	right:auto;
+	top:auto;
+	height:33px;
+	border:1px solid #8ab55b;
+	text-align:center;
+}
+
+.com_bookingforconnector_merchantdetails-resource-stay 
+	.com_bookingforconnector_merchantdetails-resource-stay-price {
+	font-size:16px;
+	color:#b2b2b2;
+	font-weight:bold;
+	line-height:20px;
+}
+
+.com_bookingforconnector_merchantdetails-resource-stay 
+	.com_bookingforconnector_merchantdetails-resource-stay-price 
+		span.com_bookingforconnector_merchantdetails-resource-stay-total { 
+	color:#ff7800;
+}
+
+.com_bookingforconnector_merchantdetails-resource-stay-price 
+	.com_bookingforconnector_merchantdetails-resource-stay-discount {
+	font-size:12px;
+	text-decoration:line-through;
+}
+
+.com_bookingforconnector_search-resource .com_bookingforconnector_search-merchant-resource .com_bookingforconnector_merchantdetails-resource-spec {
+	margin-top:18px !important;
+}
+
+.com_bookingforconnector_search-map {
+	display:none;
+}
+
+.com_bookingforconnector_search-mapcontrol {
+	float:right;
+}
+
+h4.com_bookingforconnector_search-merchant-resource-name {
+	display:block;
+	font-size:14px;
+	color:rgb(6, 121, 159);
+	margin:0 !important;
+	margin-left:10px !important;
+	margin-top:5px !important;
+	font-weight:normal;
+	min-height: 25px;
+}
+
+h4.com_bookingforconnector_search-merchant-resource-name a {
+	color:rgb(6, 121, 159);
+	text-decoration:none;
+	display:block;
+}
+h3.com_bookingforconnector-merchantlist-merchant-name,
+h3.com_bookingforconnector_merchantdetails-resource-name{
+	font-weight:normal;
+	line-height: 1.2;
+	margin-bottom: 0px;
+	margin-top: 0px;
+	padding-top:5px;
+	padding-left:0px;
+}
+
+.noborder{
+	border:none;
+}
+
+.borderleft{
+	border-left:1px solid #dadada;
+}
+.borderright{
+	border-right:1px solid #dadada;
+} 
+.com_bookingforconnector_resource_feature{
+	margin-bottom:10px;
+}
+.com_bookingforconnector_resource_feature span{
+	border-left:2px solid #dadada;
+	padding:5px 8px;
+}
+.com_bookingforconnector_resource_feature span:first-child{
+	border-left:none;
+	padding-left:0;
+}
+
+.com_bookingforconnector_merchantdetails-resource-stay-price {
+	font-size:16px;
+	color:#b2b2b2;
+	font-weight:bold;
+	line-height:20px;
+}
+
+span.com_bookingforconnector_merchantdetails-resource-stay-total { 
+	color:#ff7800;
+}
+
+.com_bookingforconnector_merchantdetails-resource-stay-discount {
+	font-size:12px;
+	text-decoration:line-through;
+}
+.paddingto60{
+	padding-top:20px;
+	padding-bottom:20px;
+}
+.paddingleft10{
+	padding-left:10px;
+}
+.padding1020{
+	padding:10px 20px;
+}
+.padding020{
+	min-height: 34px !important;
+	padding:0px 20px;
+}
+
+.underlineborder{
+	border-bottom:1px solid #dddddd;
+	margin-top:20px;
+}
+.borderright{
+	border-right:1px solid #dddddd;
+}
+.rowunderlineborder{
+	margin-bottom:10px;
+	border-bottom:1px solid #dddddd;
+}
+
+.com_bookingforconnector_resource_addfavorites{
+	background:url(../images/addfavorites.png) left center no-repeat;
+	padding-left:22px;
+	display:inline-block;
+}
+/*----------------------------------calcolator----------------------*/
+
+.com_bookingforconnector_resource-calculator {
+	background:#efefef;
+	border:1px solid #e5e5e5;
+	border-radius:5px;
+	margin-top:20px;
+}
+
+.com_bookingforconnector_resource-calculatorForm-field {
+	margin-right:20px;
+	float:left;
+	height:45px;
+}
+
+.com_bookingforconnector_resource-calculatorForm-fieldLabel {
+	display:block;
+}
+
+.com_bookingforconnector_resource-calculator-requestForm {
+	display:none;
+}
+
+.com_bookingforconnector_resource-calculatorForm-clear {
+	clear:both;
+}
+
+.com_bookingforconnector_resource-calculatorTable-bookstay {
+	width:200px;
+	border-left:1px solid #dadada;
+}
+.com_bookingforconnector_resource-calculatorTable .com_bookingforconnector_resource-summary {
+	display:none;
+}
+
+.com_bookingforconnector_resource-calculatorTable-viewsummary .com_bookingforconnector_resource-summary {
+	display:block;
+}
+
+.com_bookingforconnector_resource-calculatorTable-viewsummary .com_bookingforconnector_resource-calculatorForm-mandatory {
+	display:none;
+}
+
+.com_bookingforconnector_resource-calculatorForm-optional, .com_bookingforconnector_resource-calculatorForm-packages {
+	display:none;
+}
+
+.com_bookingforconnector_resource-calculatorTable-viewextras .com_bookingforconnector_resource-calculatorForm-optional, 
+.com_bookingforconnector_resource-calculatorTable-viewextras .com_bookingforconnector_resource-calculatorForm-packages {
+	display:block;
+}
+
+.com_bookingforconnector_resource-calculatorTable-viewsummary .com_bookingforconnector_resource-calculatorForm-changequote {
+	display:none;
+}
+
+#calculateButton{
+	padding-top:50px;
+}
+/*------------------module bookingforconnector (menu for merchants/resources ) -------------------*/
+
+.mod_bookingforconnector-resource {
+	font-size:14px;
+}
+
+.mod_bookingforconnector .com_bookingforconnector_merchantdetails-logo {
+	border:1px solid #E0E0E0;
+	width:65px;
+	height:65px;
+	margin-right:10px;
+}
+.mod_bookingforconnector .com_bookingforconnector_merchantdetails-logo-top {
+	border:1px solid #E0E0E0;
+	width:250px;
+	height:90px;
+}
+.mod_bookingforconnector_merchantdetails-menuTitle{
+	line-height:normal;
+	font-size:18px;
+	font-weight:normal;
+}
+.mod_bookingforconnector .com_bookingforconnector_merchantdetails-t1 .com_bookingforconnector_merchantdetails-rating, /* hotel */
+.mod_bookingforconnector .com_bookingforconnector_merchantdetails-t5 .com_bookingforconnector_merchantdetails-rating  /* aparthotel */
+{
+	display:inline-block;
+}
+
+.mod_bookingforconnector-resource-table td {
+	vertical-align: top;
+	padding:0;
+	padding-top:10px;
+	margin:0;
+}
+
+.mod_bookingforconnector-resource-table td.mod_bookingforconnector-resource-table-label {
+	font-weight:bold;
+}
+
+.mod_bookingforconnector-resource-table td.mod_bookingforconnector-resource-table-labelvalue {
+	/*text-align:center;*/
+}
+
+.mod_bookingforconnector-resource-table td.mod_bookingforconnector-resource-table-value {
+	padding-left:10px !important;
+}
+
+.mod_bookingforconnector_merchantdetails-map {
+	margin-top:20px;
+}
+
+.com_bookingforconnector_merchantdetails-menu {
+	margin-top:20px !important;
+	list-style: none !important;
+	margin-left:0px !important;
+}
+
+.com_bookingforconnector_merchantdetails-menu li {
+	padding:0 !important;
+	display:block !important;
+	background:none !important;
+	margin:0 !important;
+	padding:0 !important;
+}
+
+.com_bookingforconnector_merchantdetails-menu li a {
+	text-decoration:none !important;
+	border-bottom:1px solid #e0e0e0 !important;	
+}
+
+.com_bookingforconnector_merchantdetails-menu li:first-child a {
+	border-top:1px solid #e0e0e0 !important;
+}
+
+.com_bookingforconnector_merchantdetails-menu-item a, .com_bookingforconnector_merchantdetails-menu-itemactive a {
+	height:30px !important;
+	line-height:30px !important;
+	display:block !important;
+	margin:0 !important;
+	padding:0 !important;
+	padding-left:15px !important;
+}
+
+.com_bookingforconnector_merchantdetails-menu-item a:hover, .com_bookingforconnector_merchantdetails-menu-itemactive a {
+	background:#eff0f1;
+	color:#7b7b7b;
+}
+
+.com_bookingforconnector_merchantdetails-merchant-link-anchor {
+	display:block;
+	height:21px;
+	padding:5px 10px;
+	border:1px solid #bddd73;
+	color:white !important;
+	font-size:150%;
+	font-weight:bold;
+	background-color:#a2cf3d;
+	line-height:21px;
+	font-family: "abelregular", Arial, sans-serif;
+	text-align:center;
+}
+
+.com_bookingforconnector_merchantdetails-merchant-link-calc {
+	height:21px;
+	padding:5px 10px;
+	border:1px solid #ff8300;
+	color:white !important;
+	font-size:150%;
+	font-weight:bold;
+	background-color:#ff8300;
+	line-height:21px;
+	font-family: "abelregular", Arial, sans-serif;
+	text-align:center;
+}
+.com_bookingforconnector_merchantdetails-merchant-link-request {
+	height:21px;
+	padding:5px 10px;
+	border:1px solid #bddd73;
+	color:white !important;
+	font-size:150%;
+	font-weight:bold;
+	background-color:#a2cf3d;
+	line-height:21px;
+	font-family: "abelregular", Arial, sans-serif;
+	text-align:center;
+}
+
+/*------------------module bookingforconnector (menu for merchants/resources ) -------------------*/
+/*--------------fix---------*/
+#mapcontainer img,
+.fullmap img {  max-width: none !important;}
+
+/*---------RSFORM PRENOTAZIONE--------*/
+.rsform1col{
+	width:65%;
+	float:left;
+	padding:10px;
+}
+.rsform1col .fieldfirst{
+	width:50%;
+	float: left;
+}
+.rsform1col .fieldsecond{
+	width:50%;
+	float: right;
+}
+.rsform1col{
+	width:65%;
+	float:left;
+	padding:10px;
+}
+.rsform1col .formField input[type="text"], .rsform1col .formField select,
+.rsform2col .formField input[type="text"], .rsform2col .formField select, .rsform2col .formField textarea{
+	width:90%;
+	margin-bottom:5px;
+}
+.rsform1col #cc_mese, .rsform1col #cc_anno{
+	width:14px;
+}
+
+.rsform2col{
+	width:25%;
+	float:left;
+	padding:10px;
+	border-left: 1px solid #cccccc;
+}
+/*--------- FINE RSFORM PRENOTAZIONE--------*/
+/*----------------   PLUGIN    ------------------*/
+.bfcrating{
+	width:138px;
+	padding:5px;
+	text-align:center;
+	display:inline-block;
+	border: 1px solid #DADADA;
+	background-color: #F9F9F9;
+	margin-bottom:5px;
+}
+.bfcvaluation{
+	font-size:1.2em;
+	color:#258DFF;
+	font-weight:bold;
+}
+.bfcvaluationcount{
+}
+	/*----overrides-*/
+	.com_bookingforconnector-merchantlist-merchant-desc .bfcrating{
+		float:right;
+	}
+	.pull-left .com_bookingforconnector_resource-img, .pull-left .com_bookingforconnector-merchantlist-logo {
+		float:none;
+	}
+	.mod_bookingforconnector-resource .bfcrating{
+		margin-top:15px;
+		width:auto;
+		display:block;
+	}
+
+	/*----overrides-*/
+
+/*---------------- FINE PLUGIN ------------------*/
+
+.com_bookingforconnector_rating{
+	border: 1px solid #DADADA;
+	background-color: #FFF;
+	padding:20px;
+	font-family: Arial;
+}
+.com_bookingforconnector_rating_valuation{
+	font-size: 19px;
+	line-height:35px;
+}
+.com_bookingforconnector_rating_title{
+	font-size: 30px;
+	color:#333333;
+}
+
+.com_bookingforconnector_rating_title_desc{
+	font-size: 14px;
+	color: #727272;
+}
+
+.com_bookingforconnector_rating_sign-check{
+	padding-left:20px;
+	background:url('../images/sign-check.png') left center no-repeat ;
+}
+
+.com_bookingforconnector_rating_title_small{
+	font-size: 24px;
+	color: #727272;
+	display: inline-block;
+	padding-left:10px;
+}
+.com_bookingforconnector_rating_title_extrasmall{
+	font-size: 22px;
+	color: #727272;
+	display: inline-block;
+	padding-left:10px;
+}
+.com_bookingforconnector_rating_date_small{
+	font-size: 14px;
+	line-height: 30px;
+	color: #727272;
+	margin: auto;
+	font-family: Arial;
+}
+.com_bookingforconnector_rating_date_small span{
+	font-size: 18px;
+}
+
+.com_bookingforconnector_rating_value{
+	font-size:43px;
+	color:#FFF;
+	background-color: #003580;
+	width: 90px;
+	height: 90px;
+	line-height: 90px;
+	margin:auto;
+}
+.com_bookingforconnector_rating_value_small{
+	font-size:17px;
+	color:#FFF;
+	background-color: #003580;
+	width: 45px;
+	height: 45px;
+	line-height: 45px;
+	margin:auto;
+	display: inline-block;
+	text-align:center;
+}
+
+.com_bookingforconnector_rating_value_extrasmall{
+	font-size:20px;
+	color:#FFF;
+	background-color: #003580;
+	width: 40px;
+	height: 40px;
+	line-height: 40px;
+	margin:auto;
+	display: inline-block;
+	text-align:center;
+}
+
+.com_bookingforconnector_rating_based{
+	font-size:14px;
+	color:#333333;
+}
+
+.com_bookingforconnector_rating_list {
+	font-size:12px;
+	color:#7b7b7b;
+	min-height:60px;
+	border:1px solid #ffffff;
+	margin-bottom:15px;
+}
+.com_bookingforconnector_rating_list .com_bookingforconnector_rating_value{
+	font-size: 22px;
+}
+.ratingformfilter input[type="radio"]:checked + label {
+	font-weight:bold;
+}
+.ratingformfilter label{
+	/*margin-right:10px;*/
+}
+#formRating .row-fluid div[class*='span']{
+	padding-top:10px;
+}
+
+.progress-overrides{
+	font-size: 5px !important;
+	height: 5px !important;
+	margin-bottom: 20px !important;
+}
+
+.progress-overrides .bar {
+	font-size: 5px !important;
+}
+
+.alert-rating{
+	background-color: #ffffff !important;
+	color: #7b7b7b !important;
+	padding: 3px 3px 3px 15px !important;
+}
+.alert-rating form{
+	margin-bottom: 0px !important;
+	color: #7b7b7b !important;
+}
+.alert-rating .filters{
+	color: #7b7b7b !important;
+	margin: 0 !important;
+}
+
+.arrow_box {
+	position: relative;
+	background: #ffffff;
+	border: 1px solid #c2e1f5;
+	padding:10px;
+}
+
+.rating_details {
+	position: relative;
+	background: #ffffff;
+	border: 1px solid #c2e1f5;
+	border-top:0;
+	padding:10px;
+	font-size: 14px;
+}
+
+.arrow_box:after, .arrow_box:before {
+	right: 100%;
+	top: 25px;
+	border: solid transparent;
+	content: " ";
+	height: 0;
+	width: 0;
+	position: absolute;
+	pointer-events: none;
+}
+
+.arrow_box:after {
+	border-color: rgba(136, 183, 213, 0);
+	border-right-color: #fff;
+	border-width: 15px;
+	margin-top: -15px;
+}
+.arrow_box:before {
+	border-color: rgba(194, 225, 245, 0);
+	border-right-color: #c2e1f5;
+	border-width: 16px;
+	margin-top: -16px;
+}
+.arrow_box_top:after, .arrow_box_top:before {
+	bottom: 100%;
+	left: 25px;
+	border: solid transparent;
+	content: " ";
+	height: 0;
+	width: 0;
+	position: absolute;
+	pointer-events: none;
+}
+
+.arrow_box_top:after {
+	border-color: rgba(136, 183, 213, 0);
+	border-bottom-color: #fff;
+	border-width: 15px;
+	margin-left: -15px;
+}
+.arrow_box_top:before {
+	border-color: rgba(194, 225, 245, 0);
+	border-bottom-color: #c2e1f5;
+	border-width: 16px;
+	margin-left: -16px;
+}
+
+
+.com_bookingforconnector_rating_lineheight{
+	line-height:14px !important;
+}
+
+/*----------------------------*/
+
+.ui-effects-transfer, .classtransfert {  /* style the transfer element */
+			z-index:1000 !important;
+			border: 1px dotted gray !important;
+		}
+
+.hidden{
+ display:none;
+}
+.bfcmerchantgroup{
+                display:block;
+}
+
+.com_bookingforconnector_loading{
+	background:url('../images/iconloading.gif') no-repeat 50% 50%;
+}
+.com_bookingforconnector_email{
+	background:url('../images/mail.png') no-repeat 0 50%;
+	display:inline-block;
+	padding-left:24px;
+	line-height:20px;
+}
+.com_bookingforconnector_phone{
+	background:url('../images/phone.png') no-repeat 0 50%;
+	display:inline-block;
+	padding-left:24px;
+	line-height:20px;
+}
+.com_bookingforconnector_fav{
+	background:url('../images/starfav.png') no-repeat 0 50%;
+	display:inline-block;
+	padding-left:20px;
+	line-height:20px;
+}
+
+.com_bookingforconnector_favadded{
+	background:url('../images/starfavadd.png') no-repeat 0 50%;
+}
+
+.com_bookingforconnector_print{
+	background:url('../images/custom/print.png') no-repeat 0 50%;
+	display:inline-block;
+	padding-left:20px;
+	line-height:20px;
+}
+.com_bookingforconnector_share{
+	background:url('../images/custom/share.png') no-repeat 0 50%;
+	display:inline-block;
+	padding-left:20px;
+	line-height:20px;
+}
+.com_bookingforconnector_searchsimilar{
+	background:url('../images/custom/searchsimilar.png') no-repeat 0 50%;
+	display:inline-block;
+	padding-left:20px;
+	line-height:20px;
+}
+
+
+.fullmapresource img, #map_canvasresource img, #map_canvasBF img, #map_canvassearch img{
+	max-width:none !important;
+}
+
+.nopaddingtop{
+	padding-top:0 !important;
+}
+
+.com_bookingforconnector_merchantdetails-resource,.com_bookingforconnector-merchantlist-merchant{
+	background-color:#ffffff;
+	border:1px solid #dfe5f7;
+	cursor: pointer;
+}
+.com_bookingforconnector_merchantdetails-resource .com_bookingforconnector_merchantdetails-resource-features{
+	padding-left:5px;
+	padding-top:5px;
+}
+.com_bookingforconnector_merchantdetails-resource:hover,.com_bookingforconnector-merchantlist-merchant:hover{
+	background-color:#dfe5f7;
+	border:1px solid #ffffff;
+}
+
+.com_bookingforconnector_highlight{
+	background-color:#fefbde;
+}
+
+.spacetop{
+	height:10px;
+	line-height:1px;
+}
+.font16{
+	height:36px;
+	min-height:36px;
+	font-size:16px;
+	line-height: 36px;
+	padding-top:0px !important;
+	padding-bottom:0px !important;
+	display:inline-block;
+	float:left;
+}
+
+.optioncontainer {
+	padding:5px 0 0 0;
+}
+.optionresource {
+	padding:10px 20px;
+}
+
+.optionresource div{
+	border-top: 1px solid #dfe5f7;
+	padding:4px;
+}
+.optionresource div:first-child{
+	border-top: 0;
+}
+
+.optionresource .com_bookingforconnector_phone {
+	font-size: 12px;
+}
+.optionresource .com_bookingforconnector_phone a{
+	padding-left:0px;
+	font-size: 12px;
+}
+
+.optionresource a{
+	padding-left:25px;
+	font-size: 12px;
+}
+
+
+.optionresource a:hover{
+	text-decoration: underline;
+}
+
+.com_bookingforconnector_merchantdetails-name{
+	color:#0084ff;
+}
+.borderround{
+	color: #444;
+	padding-top: 5px;
+	padding-right: 5px;
+	padding-bottom: 5px;
+	padding-left: 5px;
+	border:1px solid rgba(0,0,0,0.15);
+	border-top-left-radius: 3px;
+	border-top-right-radius: 3px;
+	border-bottom-right-radius: 3px;
+	border-bottom-left-radius: 3px;
+	background-color: rgb(245, 245, 245);
+
+}
+.energyClass{
+	padding-left:5px;
+	display:inline-block;
+	*display:inline;
+	zoom:1;
+	width:100%;
+	max-width:80px;
+}
+.energyClass100 {
+	color:White;
+background:url('../images/energy-100.png') right center no-repeat ;
+}
+.energyClass101 {
+	color:White;
+background:url('../images/energy-101.png') right center no-repeat ;
+}
+.energyClass102 {
+	color:White;
+background:url('../images/energy-102.png') right center no-repeat ;
+}
+.energyClass103 {
+	color:White;
+background:url('../images/energy-103.png') right center no-repeat ;
+}
+.energyClass104 {
+	color:White;
+background:url('../images/energy-104.png') right center no-repeat ;
+}
+.energyClass105 {
+	color:White;
+background:url('../images/energy-105.png') right center no-repeat ;
+}
+.energyClass106 {
+	color:White;
+background:url('../images/energy-106.png') right center no-repeat ;
+}
+.energyClass107 {
+	color:White;
+background:url('../images/energy-107.png') right center no-repeat ;
+}
+.btnOtherDetails a{
+	display: block;
+	border:2px solid #F77B21;
+	color:#F77B21;
+	text-transform:uppercase;
+	text-align:center;
+	font-weight:bold;
+	padding:10px 5px;
+}
+
+.cancollaborate{
+	background:url('../images/collaboration.png') no-repeat 0 50%;
+	display:inline-block;
+	padding-left:24px;
+	padding-right:10px;
+	line-height:20px;
+	font-weight:bold;
+}
+/*---------------*/
+#galleria{ width: 100%; height: 300px; background: #fff }
+body .galleria-container{ background:#EDEDED; border: 1px solid #ccc; }
+body .galleria-counter{color:#000;}/**/
+.galleria-container.notouch .galleria-thumblink:hover,
+.galleria-container.touch .galleria-thumblink:active,
+.galleria-thumblink.open,
+.galleria-container.notouch .galleria-fullscreen:hover,
+.galleria-container.touch .galleria-fullscreen:active,
+.galleria-container.notouch .galleria-play:hover,
+.galleria-container.touch .galleria-play:active,
+.galleria-container.notouch .galleria-popout:hover,
+.galleria-container.touch .galleria-popout:active { background-color: #DEDEDE }
+
+/*---------------*/
+.mailalertform{
+	line-height:normal;
+	margin-top:20px;
+}
+
+.mailalertform label, 
+.mailalertform select, 
+.mailalertform button, 
+.mailalertform input
+{
+	line-height:normal !important;
+	height: auto !important;
+	font-size:12px !important;
+}
+.mailalertform label
+{
+	font-weight:bold;
+}
+.mailalertform label.checkbox
+{
+	font-weight:normal;
+}
+.mailalertbody{
+	background:url('../images/mailalertForward.png') left center no-repeat ;
+	padding-left:100px;
+	min-height: 70px;
+	border-bottom:1px solid #cccccc;
+	padding-bottom:5px;
+}
+
+.filteralphabet{
+	padding:0 5px;
+	border-left:1px solid #f47920;
+	cursor:pointer;
+}
+.filteralphabet:first-child{
+	border-left:0;
+}
+
+.filteralphabetselected{
+	cursor:auto;
+	font-weight:bold;
+}
+#searchformsimilaronsellunit{
+	margin:0;
+}
+.com_bookingforconnector_resource-name{
+	margin:0;
+}
+.com_bookingforconnector_resource_options{
+	text-align: right; 
+}
+.com_bookingforconnector_resource_options code{
+	white-space: nowrap;
+}
+
+#resourcegallery,#resourcePlanimetrygallery,#resourceVideogallery {
+	width: 100%;
+	background: #ffffff;
+	-webkit-user-select: none;
+	-moz-user-select: none;  
+	user-select: none;
+}
+
+.resourcecontainer{
+	
+}
+.resourcetabmenu{
+	border-top: 1px solid #e6e6e6;
+	border-left: 1px solid #e6e6e6;
+	border-right: 1px solid #e6e6e6;
+	position:relative;
+	top:1px;
+}
+.resourcetabmenu a{
+	background-color:#fff;
+	display:inline-block;
+	padding:14px 20px;
+	border-right: 1px solid #e6e6e6;
+	color: #666666;
+	cursor:pointer;
+	border-bottom: 1px solid #e6e6e6;
+}
+.resourcetabmenu a:hover, .resourcetabmenu a.selected{
+	background-color:#f9f9f9 !important;
+	border-bottom: 1px solid #f9f9f9;
+}
+.resourcetabmenu a.foto{
+	background:url('../images/tab/photo.png') 20px center no-repeat ;
+	padding-left:46px;
+	
+}
+.resourcetabmenu a.video{
+	background:url('../images/tab/video.png') 20px center no-repeat ;
+	padding-left:46px;
+	
+}
+.resourcetabmenu a.planimetria{
+	background:url('../images/tab/planimetria.png') 20px center no-repeat ;
+	padding-left:46px;
+	
+}
+
+.resourcetabmenu a.mappa{
+	background:url('../images/tab/mappa.png') 20px center no-repeat ;
+	padding-left:46px;
+	
+}
+.resourcetabcontainer{
+	border-bottom: 1px solid #e6e6e6;
+	border-left: 1px solid #e6e6e6;
+	border-right: 1px solid #e6e6e6;
+	border-top: 1px solid #e6e6e6;
+	background-color:#f9f9f9;
+	padding:10px;
+}
+
+.tabcontent{
+	display:none;
+}
+
+.resourcetablefeature td:nth-child(3),.resourcetablefeature td:first-child{
+	font-weight:bold;
+}
+
+.borderform{
+	border: 1px solid #e6e6e6;
+	background-color:#f9f9f9;
+}
+.borderformtitle{
+	border-bottom: 1px solid #e6e6e6;
+	padding:10px 20px;
+}
+
+.borderformbody{
+	padding:20px;
+}
+.borderformtitle h4{
+	margin:0;
+}
+.borderformtitle .mod_bookingforconnector_merchantdetails-menuTitle{
+	margin:0;
+}
+
+.merchantAnonymous{
+	background:url('../images/anonymous.gif') 0px center no-repeat ;
+	padding:10px;
+	padding-left:80px;
+	min-height:75px;
+}
+
+.privacyrating input[type="checkbox"] {
+	float:left;
+}
+.privacyrating label {
+	padding-left:20px;
+}
+.ccdescr{
+	font-weight:normal;
+}
+.ccimages{
+	font-size:25px;
+	/*color: #039be5;*/
+	color: #143d69;
+}
+/* Background gallery */
+.rsUni,.rsUni .rsOverflow,.rsUni .rsSlide,.rsUni .rsGCaption,.rsUni .rsVideoFrameHolder,.rsUni .rsThumbs {	
+	background: #f9f9f9 !important;	
+	color: #222 !important;	
+}
+.img-responsive {
+  max-width: 100% !important; // Set a maximum relative to the parent
+}
