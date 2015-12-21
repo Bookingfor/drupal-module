@@ -84,7 +84,7 @@ $showMap = (($resourceLat != null) && ($resourceLon !=null) );
 <script type="text/javascript">
 jQuery(function($) {
 	jQuery('.moduletable-insearch').show();
-	var pagelist = "/merchant-details/merchantdetails/<?php echo $merchant->MerchantId; ?>-<?php echo seoUrl($merchant->Name); ?>/?task=getMerchantResources";
+	var pagelist = Drupal.settings.basePath+'/merchant-details/merchantdetails/<?php echo $merchant->MerchantId; ?>-<?php echo seoUrl($merchant->Name); ?>/?task=getMerchantResources';
 	console.log(pagelist);
 	jQuery("#firstresources").load(pagelist, function() {
      var shortenOption = {

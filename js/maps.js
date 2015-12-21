@@ -9,7 +9,7 @@
         Drupal.behaviors.mapsmisc = {
           attach: function(context, settings) {
             jQuery(".tabcontent:first").show();
-            jQuery(".resourcetabmenu a").click(function() {
+            jQuery("#bfcmerchantlist .resourcetabmenu a").click(function() {
               jQuery('.tabcontent').hide();
               var activeTab = jQuery(this).attr("rel");
               jQuery(".resourcetabmenu a").removeClass("selected");
@@ -19,20 +19,13 @@
               }, 1000);
               jQuery(this).addClass("selected");
               if (activeTab == 'mappa') {
-                openGoogleMapSearch();
+              	 	if (jQuery('#map_canvassearch').is(':empty')){
+                     setTimeout(function () { handleApiReadySearch(); }, 1000);
+                   }
               }
             });
           }
         };
-
-        function openGoogleMapSearch() {
-          if (typeof google !== 'object' || typeof google.maps !== 'object') {
-            var script = document.createElement("script");
-            script.type = "text/javascript";
-            script.src = "http://maps.google.com/maps/api/js?callback=handleApiReadySearch";
-            document.body.appendChild(script);
-          }
-        }
       })(jQuery);
 
       function createMarkers(data, oms, bounds, currentMap, context) {
@@ -42,7 +35,7 @@
              if (val.XGooglePos == '' || val.YGooglePos == '' || val.XGooglePos == null || val.YGooglePos == null)
                return true;
 
-             var url = "/joomla/en/search-availability/merchantdetails?format=raw";
+             var url = Drupal.settings.basePath+'search-availability/merchantdetails?format=raw';
              url += '&layout=map&merchantId=' + val.MerchantId;
 
              var marker = new google.maps.Marker({
@@ -61,7 +54,7 @@
              if (val.MrcLat == '' || val.MrcLng == '' || val.MrcLat == null || val.MrcLng == null)
                return true;
 
-             var url = "/joomla/en/search-availability/merchantdetails?format=raw";
+             var url = Drupal.settings.basePath+'search-availability/merchantdetails?format=raw';
              url += '&layout=map&merchantId=' + val.MerchantId;
 
              var marker = new google.maps.Marker({

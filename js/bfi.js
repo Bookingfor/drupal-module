@@ -1,6 +1,24 @@
 (function($) {
   Drupal.behaviors.bfi = {
     attach: function(context, settings) {  
+          jQuery(".resourcetabmenu a").click(function() {
+ 			jQuery('.tabcontent').hide();
+			var activeTab = jQuery(this).attr("rel"); 
+			jQuery(".com_bookingforconnector_merchantdetails-t .resourcetabmenu a").removeClass("selected");
+			jQuery("#"+activeTab).fadeIn();
+			jQuery(this).addClass("selected");
+			currentslider="";
+			if (activeTab=='mappa')
+			{
+				openGoogleMapMerchant()
+			}
+			if (activeTab=='foto')
+			{
+				var slider = jQuery('#resourcegallery').data('royalSlider');
+				slider.updateSliderSize(true);
+			}
+		});
+		
       jQuery('.lensimg').click(function() {
         var urlcheck = jQuery(this).attr('href');
         jQuery.getJSON(urlcheck, function(data) {
@@ -124,3 +142,60 @@
 function searchsimilar() {
   jQuery('#sellonsearchform').submit();      
 }
+
+function showMap() {
+		jQuery('#maptab').click();
+	}
+
+    function showMarker(extId) {
+		showMap();
+		if(!markersLoaded) {
+			setTimeout(function() {showMarker(extId)},500);
+			return;
+		}
+		jQuery(oms.getMarkers()).each(function() {
+			if (this.extId != extId) return true; 
+			var offset = jQuery('#mappa').offset();
+			jQuery('html, body').scrollTop(offset.top-20);
+			showMarkerInfo(this);
+			return false;
+		});
+	}
+	
+function showMarkerInfo(marker) {
+		if (infowindow) infowindow.close();
+		jQuery.get(marker.url, function (data) {
+			infowindow = new google.maps.InfoWindow({ content: data });
+			infowindow.open(mapSearch, marker);
+		});		
+}
+
+      function openGoogleMapMerchant() {
+		handleApiReadyMerchant();	
+		}
+		function redrawmap() {
+			if (typeof google !== "undefined")
+			{
+				if (typeof google === 'object' || typeof google.maps === 'object'){
+					google.maps.event.trigger(mapMerchant, 'resize');
+					mapMerchant.setCenter(myLatlngMerchant);
+				}
+			}
+		}
+
+function handleApiReadyMerchant() {
+			myLatlngMerchant = new google.maps.LatLng(45.636192, 13.06120999999996);
+			var myOptions = {
+					zoom: 15,
+					maxZoom: 17,
+					minZoom:7,
+					center: myLatlngMerchant,
+					mapTypeId: google.maps.MapTypeId.ROADMAP
+				}
+			mapMerchant = new google.maps.Map(document.getElementById("map_canvasmerchant"), myOptions);
+			var marker = new google.maps.Marker({
+				  position: myLatlngMerchant,
+				  map: mapMerchant
+			  });
+			setTimeout(function(){ redrawmap(); }, 1000);
+		}

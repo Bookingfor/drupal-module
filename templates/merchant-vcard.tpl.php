@@ -66,7 +66,7 @@ $MerchantType = $merchant->MerchantTypeId;
 
 $uriMerchant = $base_url.'/merchant-details/merchantdetails/'.$merchant->MerchantId.'-'.seoUrl($merchant->Name);
 
-$route = '';
+$route = $uriMerchant;
 
 ?>
 <div class="mod_bookingforconnector mod_bookingforconnector">
