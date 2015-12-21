@@ -142,18 +142,12 @@ class BookingForConnectorModelMerchantDetails
 	}
 
 //Risorse in vendita
-	public function getMerchantOnSellUnitsFromService($start, $limit) {
-		$params = $this->getState('params');
-
-		$merchantId = $params['merchantId'];
-
+	public function getMerchantOnSellUnitsFromService($start, $limit, $merchantId) {
 		$options = array(
 				'path' => $this->urlMerchantOnSellUnits,
 				'data' => array(
 					'$filter' => 'MerchantId eq ' . $merchantId . ' and Enabled eq true',
 					'$orderby' => 'Weight',
-					/*'$skip' => $start,
-					'$top' => $limit,*/
 					'$format' => 'json'
 				)
 		);
@@ -674,7 +668,7 @@ class BookingForConnectorModelMerchantDetails
 		return $this->getItems('resourcesajax');
 	}
 
-	public function getItems($type = '', $ext_data = '', $merchant_id = '')
+	public function getItems($type = '', $ext_data = 0, $merchant_id = '')
 	{
 
 		switch($type) {
@@ -689,8 +683,9 @@ class BookingForConnectorModelMerchantDetails
 				break;
 			case 'onsellunits':
 				$items = $this->getMerchantOnSellUnitsFromService(
-					$this->getStart($type),
-					$this->getState('list.limit')
+					$ext_data,
+					20,
+					$merchant_id
 				);
 				break;
 			case 'onsellunit':
@@ -706,7 +701,7 @@ class BookingForConnectorModelMerchantDetails
 			case 'resourcesajax':
 				$items = $this->getMerchantResourcesFromService(
 					0,
-					10,
+					20,
 					$ext_data
 				);
 				break;
@@ -741,12 +736,12 @@ class BookingForConnectorModelMerchantDetails
 		}
 	}
 
-	public function getTotalOnSellUnits()
+	public function getTotalOnSellUnits($merchantId)
 	{
 		$options = array(
 				'path' => $this->urlMerchantOnSellUnitsCount,
 				'data' => array(
-					'$filter' => 'MerchantId eq ' . JRequest::getInt('merchantId'). ' and Enabled eq true'
+					'$filter' => 'MerchantId eq ' . $merchantId. ' and Enabled eq true'
 			)
 		);
 

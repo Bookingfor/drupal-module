@@ -52,7 +52,7 @@
     	jQuery('.inforequest').click(function() {
     	  var merchantid = jQuery(this).attr('rel');
     	  var id = jQuery(this).attr('id');
-    	  var queryMG = Drupal.settings.basePath+'get-inforequest-form?merchantid='+merchantid;
+    	  var queryMG = Drupal.settings.basePath'get-inforequest-form?merchantid='+merchantid;
         jQuery.getJSON(queryMG, function(data) {
           jQuery(data).dialog({'width' : '550px'});
         });

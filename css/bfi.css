@@ -1450,3 +1450,79 @@ body .galleria-counter{color:#000;}/**/
 .img-responsive {
   max-width: 100% !important; // Set a maximum relative to the parent
 }
+
+#divmapstatic {
+min-height: 370px;
+}
+
+.flexslider { 
+	margin: 0; background: #fff; 
+	border: 0px solid #fff; 
+	border-right: 1px solid #fff; 
+	position: relative; 
+	-webkit-border-radius: 0px; 
+	-moz-border-radius: 0px;
+	-o-border-radius: 0px;
+	border-radius: 0px; 
+	-webkit-box-shadow: 0 0px 0px rgba(0,0,0,.2);
+	-moz-box-shadow: 0 0px 0px rgba(0,0,0,.2);
+	-o-box-shadow: 0 0px 0px rgba(0,0,0,.2);
+	box-shadow: 0 0px 0px rgba(0,0,0,.2);
+	zoom: 1; 
+	}
+/*
+.flexslider .slides img {
+    width: 398px;
+    height: 298px;
+}
+#carouselResource .slides img {
+    width: 78px;
+    height: 58px;
+}
+*/
+#carouselResource{
+	border-top: 1px solid #fff; 
+}
+.title1{
+	font-weight:bold;
+	margin-bottom:10px;
+}
+.minheight10{
+	min-height:10px !important;
+	font-size:12px;
+}
+.details{
+	background-color: #f1f1f1;
+	border-right: 1px solid #fff; 
+}
+
+#sellonsearchform {
+display: none;
+}
+
+.com_bookingforconnector_resource-calculator {
+padding: 20px;
+}
+
+.left-section {
+  display: inline-block;
+  width: 40%;
+  vertical-align: top;
+}
+
+#block-bfi-bfi-search-by-merchant-type .left-section {
+width: 100%;
+}
+
+#price-quote {
+    display: inline-block;
+    width: 40%;
+    vertical-align: top;
+    border-left: 1px solid #999;
+    padding-left: 8%;
+}
+
+.age-section .form-type-select {
+    width: 47%;
+    display: inline-block;
+}

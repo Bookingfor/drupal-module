@@ -323,6 +323,7 @@ class BookingForConnectorModelSearch
 		$this->count =  count($results);
 
 		if (! $ignorePagination && isset($start) && (isset($limit) && $limit > 0 ) && !empty($results)) {
+			$_SESSION['search.results']['totalresultcount'] = count($results);
 			$results = array_slice($results, $start, $limit);
 			$params = $_SESSION['search.params'];
 			$checkin = $params['checkin'];
@@ -801,10 +802,10 @@ class BookingForConnectorModelSearch
      return $typologies;
 	}
 
-	public function getItems($ignorePagination = false, $jsonResult = false) {
+	public function getItems($ignorePagination = false, $jsonResult = false, $start = 0, $count = 20) {
 		$items = $this->getSearchResults(
-			0,
-			20,
+			$start,
+			$count,
 			'',
 			'',
 			$ignorePagination,

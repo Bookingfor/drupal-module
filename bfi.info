@@ -8,6 +8,7 @@ files[] = includes/modelMerchants.inc
 files[] = includes/modelMerchantDetails.inc
 files[] = includes/modelSearch.inc
 files[] = includes/modelResource.inc
+files[] = includes/modelResources.inc
 files[] = includes/modelPortal.inc
 files[] = includes/RSFormHelper.inc
 files[] = includes/modelOrders.inc
@@ -16,6 +17,9 @@ files[] = includes/paymentHelper.inc
 files[] = includes/modelServices.inc
 files[] = includes/modelRatings.inc
 files[] = includes/modelInforequest.inc
+files[] = includes/modelOnsellunits.inc
+files[] = includes/modelOnsellunit.inc
+files[] = includes/modelSearchonsell.inc
 
 stylesheets[all][] = css/fontawesome.css
 stylesheets[all][] = css/bfi.css
@@ -23,6 +27,7 @@ stylesheets[all][] = css/template.css
 stylesheets[all][] = css/rs-universal.css
 stylesheets[all][] = css/royalslider.css
 stylesheets[all][] = css/jquery.rating.css
+stylesheets[all][] = css/flexslider.css
 
 scripts[] = js/bfi.js
 scripts[] = js/bf.js
@@ -31,3 +36,8 @@ scripts[] = js/jquery.royalslider.min.js
 scripts[] = js/maps.js
 scripts[] = js/oms.min.js
 scripts[] = js/jquery.rating.js
+scripts[] = js/jquery.flexslider-min.js
+
+dependencies[] = jquery_update
+dependencies[] = date
+dependencies[] = sliderfield

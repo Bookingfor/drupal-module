@@ -674,9 +674,9 @@ class BookingForConnectorModelResource
 		$px = $params['paxages'];
 		$ex = isset($params['extras']) ? $params['extras'] : '';
 		$pkgs = isset($params['packages']) ? $params['packages'] : '';
-		$pt = $params['pricetype'];
-		$rpId = $params['rateplanId'];
-		$vpId = $params['variationPlanId'];
+		$pt = isset($params['pricetype']) ? $params['pricetype'] : '';
+		$rpId = isset($params['rateplanId']) ? $params['rateplanId'] : '';
+		$vpId = isset($params['variationPlanId']) ? $params['variationPlanId'] : '';
 		$hasRateplans = 1;
 		$options = array(
 				'path' =>  $this->urlCompleteStayRatePlan, //$hasRateplans ? $this->urlStayRatePlan : $this->urlStay, //  BFCHelper::isRatePlanStay() ? $this->urlStayRatePlan : $this->urlStay,

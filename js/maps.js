@@ -31,31 +31,89 @@
             script.type = "text/javascript";
             script.src = "http://maps.google.com/maps/api/js?callback=handleApiReadySearch";
             document.body.appendChild(script);
-          } else {
-            handleApiReadySearch();
           }
         }
       })(jQuery);
 
-      function createMarkers(data, oms, bounds, currentMap) {
+      function createMarkers(data, oms, bounds, currentMap, context) {
+      	  console.log(data);
         jQuery.each(data, function(key, val) {
-          if (val.XGooglePos == '' || val.YGooglePos == '' || val.XGooglePos == null || val.YGooglePos == null)
-            return true;
+        	 if (context == 'SAG') {
+             if (val.XGooglePos == '' || val.YGooglePos == '' || val.XGooglePos == null || val.YGooglePos == null)
+               return true;
 
-          var url = "/joomla/en/search-availability/merchantdetails?format=raw";
-          url += '&layout=map&merchantId=' + val.MerchantId;
+             var url = "/joomla/en/search-availability/merchantdetails?format=raw";
+             url += '&layout=map&merchantId=' + val.MerchantId;
 
-          var marker = new google.maps.Marker({
-            position: new google.maps.LatLng(val.XGooglePos, val.YGooglePos),
-            map: currentMap
-          });
+             var marker = new google.maps.Marker({
+             position: new google.maps.LatLng(val.XGooglePos, val.YGooglePos),
+             map: currentMap
+            });
 
-          marker.url = url;
-          marker.extId = val.MerchantId;
+            marker.url = url;
+            marker.extId = val.MerchantId;
 
-          oms.addMarker(marker);
+            oms.addMarker(marker);
 
-          bounds.extend(marker.position);
+            bounds.extend(marker.position);
+         }
+         else if(context == 'SA') {
+             if (val.MrcLat == '' || val.MrcLng == '' || val.MrcLat == null || val.MrcLng == null)
+               return true;
+
+             var url = "/joomla/en/search-availability/merchantdetails?format=raw";
+             url += '&layout=map&merchantId=' + val.MerchantId;
+
+             var marker = new google.maps.Marker({
+             position: new google.maps.LatLng(val.MrcLat, val.MrcLng),
+             map: currentMap
+            });
+
+            marker.url = url;
+            marker.extId = val.MerchantId;
+
+            oms.addMarker(marker);
+
+            bounds.extend(marker.position);         
+         }
+         else if (context == 'SOI') {
+             if (val.XGooglePos == '' || val.YGooglePos == '' || val.XGooglePos == null || val.YGooglePos == null)
+               return true;
+
+             var url = "/joomla/en/search-availability/merchantdetails?format=raw";
+             url += '&layout=map&merchantId=' + val.MerchantId;
+
+             var marker = new google.maps.Marker({
+             position: new google.maps.LatLng(val.XGooglePos, val.YGooglePos),
+             map: currentMap
+            });
+
+            marker.url = url;
+            marker.extId = val.MerchantId;
+
+            oms.addMarker(marker);
+
+            bounds.extend(marker.position);  
+         	}
+         	else if (context == 'SOR') {
+             if (val.XPos == '' || val.YPos == '' || val.XPos == null || val.YPos == null)
+               return true;
+
+             var url = "/joomla/en/search-availability/merchantdetails?format=raw";
+             url += '&layout=map&merchantId=' + val.MerchantId;
+
+             var marker = new google.maps.Marker({
+             position: new google.maps.LatLng(val.XPos, val.YPos),
+             map: currentMap
+            });
+
+            marker.url = url;
+            marker.extId = val.MerchantId;
+
+            oms.addMarker(marker);
+
+            bounds.extend(marker.position);  
+         	}
         });
       }
 
@@ -76,9 +134,14 @@
                 showMarkerInfo(marker);
               });
               if (!markersLoading) {
-                var data = Drupal.settings.bfi.search_items;
-                console.log(data);
-                createMarkers(data, oms, bounds, mapSearch);
+                var context = Drupal.settings.bfi.context;
+                if (context == 'SOR') {
+                  var data = Drupal.settings.bfi.onsell_items_related;
+                }
+                else {
+                  var data = Drupal.settings.bfi.search_items;                
+                }
+                createMarkers(data, oms, bounds, mapSearch, context);
                 if (oms.getMarkers().length > 0) {
                   mapSearch.fitBounds(bounds);
                 }

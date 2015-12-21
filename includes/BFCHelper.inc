@@ -255,8 +255,7 @@ class BFCHelper {
 		return $model->getItem();
 	}
 	public static function getMerchantFromServicebyId($merchantId) {
-		JModelLegacy::addIncludePath(JPATH_ROOT. DIRECTORY_SEPARATOR .'components' . DIRECTORY_SEPARATOR . 'com_bookingforconnector'. DIRECTORY_SEPARATOR . 'models', 'BookingForConnectorModel');
-		$model = JModelLegacy::getInstance('MerchantDetails', 'BookingForConnectorModel');
+		$model = new BookingForConnectorModelMerchantDetails;
 		return $model->getMerchantFromServicebyId($merchantId);
 	}
 
@@ -306,8 +305,7 @@ class BFCHelper {
 	}
 
 	public static function getLocationZonesBySearch() {
-		JModelLegacy::addIncludePath(JPATH_ROOT. DIRECTORY_SEPARATOR .'components' . DIRECTORY_SEPARATOR . 'com_bookingforconnector'. DIRECTORY_SEPARATOR . 'models', 'BookingForConnectorModel');
-		$model = JModelLegacy::getInstance('SearchOnSell', 'BookingForConnectorModel');
+		$model = new BookingForConnectorModelSearchOnSell;
 		return $model->getLocationZonesBySearch();
 	}
 	public static function getLastLocationZoneOnsell() {
@@ -322,8 +320,7 @@ class BFCHelper {
 		return $model->getLocations();
 	}
 	public static function getLocationById($locationId) {
-		JModelLegacy::addIncludePath(JPATH_ROOT. DIRECTORY_SEPARATOR .'components' . DIRECTORY_SEPARATOR . 'com_bookingforconnector'. DIRECTORY_SEPARATOR . 'models', 'BookingForConnectorModel');
-		$model = JModelLegacy::getInstance('Merchants', 'BookingForConnectorModel');
+		$model = new BookingForConnectorModelMerchants;
 		return $model->getLocationById($locationId);
 	}
 
@@ -398,8 +395,7 @@ class BFCHelper {
 	}
 
 	public static function GetResourcesByIds($listsId,$language='') {
-		JModelLegacy::addIncludePath(JPATH_ROOT. DIRECTORY_SEPARATOR .'components' . DIRECTORY_SEPARATOR . 'com_bookingforconnector'. DIRECTORY_SEPARATOR . 'models', 'BookingForConnectorModel');
-		$model = JModelLegacy::getInstance('Resources', 'BookingForConnectorModel');
+      $model = new BookingForConnectorModelResources;
 		return $model->GetResourcesByIds($listsId,$language);
 	}
 	public static function getDiscountDetails($discountId, $hasRateplans) {
@@ -419,8 +415,7 @@ class BFCHelper {
 		return $model->getRateplanSimpleDetails($rateplanId);
 	}
 	public static function GetResourcesOnSellByIds($listsId,$language='') {
-		JModelLegacy::addIncludePath(JPATH_ROOT. DIRECTORY_SEPARATOR .'components' . DIRECTORY_SEPARATOR . 'com_bookingforconnector'. DIRECTORY_SEPARATOR . 'models', 'BookingForConnectorModel');
-		$model = JModelLegacy::getInstance('OnSellUnits', 'BookingForConnectorModel');
+		$model = new BookingForConnectorModelOnSellUnits;
 		return $model->GetResourcesByIds($listsId,$language);
 	}
 	public static function GetServicesByIds($listsId) {
@@ -1078,46 +1073,7 @@ date_default_timezone_set('UTC');
 
 	public static function setSearchOnSellParamsSession($params) {
 		$sessionkey = 'searchonsell.params';
-		$pars = array();
-		$pars['contractTypeId'] = $params['contractTypeId'];
-		$pars['unitCategoryId'] = $params['unitCategoryId'];
-		$pars['roomsmin'] = $params['roomsmin'];
-		$pars['roomsmax'] = $params['roomsmax'];
-		$pars['bedroomsmin'] = $params['bedroomsmin'];
-		$pars['bedroomsmax'] = $params['bedroomsmax'];
-		$pars['bathsmin'] = $params['bathsmin'];
-		$pars['bathsmax'] = $params['bathsmax'];
-		$pars['areamin'] = $params['areamin'];
-		$pars['areamax'] = $params['areamax'];
-		$pars['pricemax'] = $params['pricemax'];
-		$pars['pricemin'] = $params['pricemin'];
-		$pars['zoneId'] = $params['zoneId'];
-		$pars['searchType'] = $params['searchType'];
-
-		if(!empty($params['locationzones'])){
-			$pars['locationzones'] = $params['locationzones'];
-		}
-		if(!empty($params['locationzone'])){
-			$pars['locationzone'] = $params['locationzone'];
-		}
-
-		$pars['contractTypeId'] = $params['contractTypeId'];
-		$pars['cultureCode'] = $params['cultureCode'];
-		$pars['merchantId'] = $params['merchantId'];
-		$pars['points'] = $params['points'];
-
-		if(!empty($params['filters'])){
-			$pars['filters'] = $params['filters'];
-		}
-		
-		$pars['services'] = $params['services'];
-		$pars['isnewbuilding'] = $params['isnewbuilding'];
-		$pars['randomresult'] = $params['randomresult'];
-		$pars['showReserved'] = $params['showReserved'];
-		$pars['searchseed'] = $params['searchseed'];
-
-		$session = JFactory::getSession();
-		$session->set($sessionkey, $pars, 'com_bookingforconnector'); //$_SESSION[$sessionkey] = $pars;
+		$_SESSION[$sessionkey] = $params;
 	}
 	
 	public static function getSearchOnSellParamsSession() {

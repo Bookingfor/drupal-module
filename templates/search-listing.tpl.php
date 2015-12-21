@@ -52,7 +52,7 @@ $routeRating = $base_url.'/merchant-details/merchantdetails/'.$merchant->Merchan
 						- <a href="javascript:void(0);" onclick="showMarker(<?php echo $merchant->MerchantId?>)">Show On Map</a>
 						<?php endif; ?> -
 						<span class="com_bookingforconnector_phone"><a  href="javascript:void(0);" class="merchantphone" rel = "<?php echo $merchant->MerchantId?>" id="phone<?php echo $merchant->MerchantId?>">Show Phone</a></span>
-						<a class="boxedpopup com_bookingforconnector_email" href="<?php echo $routeInfoRequest?>" rel="{handler:'iframe'}" >Request Info</a>
+						<a class="boxedpopup com_bookingforconnector_email inforequest" href="javascript:void(0);" rel = "<?php echo $merchant->MerchantId?>" id="inforequest<?php echo $merchant->MerchantId?>">Request Info</a>
 				</div>
 				<p class="com_bookingforconnector-merchantlist-merchant-desc com_bookingforconnector_loading com_bookingforconnector-merchantlist-merchant-desc"  id="descr<?php echo $merchant->MerchantId?>"></p>
 			</div>
@@ -64,8 +64,9 @@ $routeRating = $base_url.'/merchant-details/merchantdetails/'.$merchant->Merchan
 				   <?php
                  $resourceRoute = $base_url.'/accommodation-details/resource/'.$resource->ResourceId.'-'.seoUrl($resource->ResName);				   
 				   ?>
-					<?php if($counter == $maxItemsView):?>
-					<div id="showallresource<?php echo $merchant->MerchantId?>">
+					<?php if($counter == $maxItemsView):?>				
+					<a rel="<?php echo $merchant->MerchantId; ?>" class="search-show-more" style="padding-left:10px;"> <i class="icon-plus "></i><?php echo 'Show all'; ?></a>
+					<div id="showallresource<?php echo $merchant->MerchantId; ?>" style="display:none;">
 					<?php endif; ?>
 					<?php
 					$resourceName = $resource->ResName;
@@ -141,16 +142,14 @@ $routeRating = $base_url.'/merchant-details/merchantdetails/'.$merchant->Merchan
 						</div>
 
 					</div>
-						<?php endif; ?>
 					<?php
-					$counter += 1;
+					  $counter += 1;
 					?>
-				<?php endforeach;?>
+					<?php endif; ?>
+				    <?php endforeach;?>
 					<?php
 					if($counter > $maxItemsView){
-
 					echo "</div>";
-
 					}
 					?>
 
