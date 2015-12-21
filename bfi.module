@@ -1,4 +1,7 @@
 <?php
+function bfi_init() {
+  drupal_add_js('http://maps.google.com/maps/api/js?sensor=false', 'external');
+}
 
 function bfi_menu() {
   $items['admin/config/bfi'] = array(
@@ -348,12 +351,23 @@ function bfi_merchant_vcard_helper() {
     $model = new BookingForConnectorModelMerchantDetails;
     $merchant = $model->getItem($merchant_id);
   }
-  return theme('merchant_vcard', array('merchant' => $merchant));
+  if(isset($merchant)) {
+    return theme('merchant_vcard', array('merchant' => $merchant));
+  }
+  else {
+    return '';  
+  }
 }
 
 function bfi_search_filter_form_helper() {
 	$form = drupal_get_form('bfi_search_filter_form');
-   return drupal_render($form);
+	$arg0 = arg(0);
+	if($arg0 == 'search-availability') {
+     return drupal_render($form);
+   }
+   else {
+     return '';
+   }
 }
 
 function bfi_search_filter_form($form, $form_state) {
@@ -381,7 +395,7 @@ if (empty($duration)) {
 	$duration =1;
 }
 
-$searchid = $_GET['searchid'];
+$searchid = isset($_GET['searchid']) ? $_GET['searchid'] : '';
 $isMerchantResults = $pars['merchantResults'];
 
 $filtersEnabled = BFCHelper::getEnabledFilterSearchParamsSession();
@@ -2887,7 +2901,7 @@ function bfi_pager_link($variables) {
   	 	unset($_SESSION['current_page_query']['page']);
   	 }
   	 $query = array_merge($query, $_SESSION['current_page_query']);
-    $attributes['href'] = url($_SESSION['page_path'], array('query' => $query));
+    $attributes['href'] = url($_SESSION['current_page_path'], array('query' => $query));
   } 
   else {
     $attributes['href'] = url($_GET['q'], array('query' => $query));
