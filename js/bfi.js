@@ -171,7 +171,7 @@ function showMarkerInfo(marker) {
 }
 
       function openGoogleMapMerchant() {
-		handleApiReadyMerchant();	
+		//handleApiReadyMerchant();	
 		}
 		function redrawmap() {
 			if (typeof google !== "undefined")
