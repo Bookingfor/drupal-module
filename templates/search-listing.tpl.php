@@ -1,11 +1,11 @@
 <?php
 global $base_url;
 $maxItemsView = 3;
-$img = $base_url . "/sites/all/modules/bfi/images/default.png";
-$imgError = $base_url . "/sites/all/modules/bfi/images/default.png";
+$img = $base_url.'/'.drupal_get_path('module', 'bfi')."/images/default.png";
+$imgError = $base_url.'/'.drupal_get_path('module', 'bfi')."/images/default.png";
 
-$merchantLogo =  $base_url . "/sites/all/modules/bfi/images/default.png";
-$offersDefault =  $base_url . "/sites/all/modules/bfi/images/offertDefault.jpg";
+$merchantLogo =  $base_url.'/'.drupal_get_path('module', 'bfi')."/images/default.png";
+$offersDefault =  $base_url.'/'.drupal_get_path('module', 'bfi')."/images/offertDefault.jpg";
 
 $filters = null;
 $filtersstars = null;
@@ -161,4 +161,3 @@ $routeRating = $base_url.'/merchant-details/merchantdetails/'.$merchant->Merchan
 	$listsId[]= $merchant->MerchantId;
 	?>
 <?php endforeach; ?>
-</div>

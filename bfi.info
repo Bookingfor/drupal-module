@@ -41,3 +41,4 @@ scripts[] = js/jquery.flexslider-min.js
 dependencies[] = jquery_update
 dependencies[] = date
 dependencies[] = sliderfield
+dependencies[] = date_popup

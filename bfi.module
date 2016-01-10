@@ -396,7 +396,7 @@ if (empty($duration)) {
 }
 
 $searchid = isset($_GET['searchid']) ? $_GET['searchid'] : '';
-$isMerchantResults = $pars['merchantResults'];
+$isMerchantResults = isset($pars['merchantResults']) ? $pars['merchantResults'] : '';
 
 $filtersEnabled = BFCHelper::getEnabledFilterSearchParamsSession();
 
@@ -2170,7 +2170,7 @@ function merchant_inforequest_form($form, $form_state, $merchant, $resource_id =
   }
   $form['Redirect'] = array(
   '#type' => 'hidden',
-  '#value' => url('merchant-details/merchantdetails/'.$merchant->MerchantId.'-'.seoUrl($merchant->Name).'/thanks'),
+  '#value' => 'merchant-details/merchantdetails/'.$merchant->MerchantId.'-'.seoUrl($merchant->Name).'/thanks',
   );
   
   $form['label'] = array(
@@ -2384,7 +2384,6 @@ function merchant_inforequest_form_submit($form, $form_state) {
 					$orderData['cultureCode'],
 					$orderData['processOrder']
 					);	
-		dpm($return);
 		if (!empty($return)){
 			if($orderData['orderType'] == 'c') {
 			  drupal_set_message('Your Info Request was placed succesfully');
@@ -2423,7 +2422,9 @@ $merchantid = $_GET['merchantid'];
 $resourceid = $_GET['resourceid'];
 $model = new BookingForConnectorModelMerchantDetails;
 $merchant = $model->getItem($merchant_id);
-drupal_json_output(drupal_render(drupal_get_form('merchant_inforequest_form', $merchant, $resourceid)));
+$form = drupal_get_form('merchant_inforequest_form', $merchant, $resourceid);
+$form['#action'] = 'abc';
+drupal_json_output(drupal_render($form));
 }
 
 function accommodationdetails_merchantdetails_sales() {
