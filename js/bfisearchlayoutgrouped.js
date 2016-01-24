@@ -1,5 +1,5 @@
 (function($) {
-  Drupal.behaviors.bfisearchsingle = {
+  Drupal.behaviors.bfisearchgrouped = {
     attach: function(context, settings) {
     	function showallresource(who, elm) {
         jQuery(who).show();
@@ -19,8 +19,8 @@
       var listToCheck = merchantids.join(',');
       
       var strAddress = "[indirizzo] - [cap] - [comune] ([provincia])";
-      var imgPathMG = "//cdnazure.bookingfor.com/bibione/images/resources/gruppimerchant/40x40/[img]";
-      var imgPathMGError = "//ws.bookingfor.com/azure/bibione/images/resources/gruppimerchant/[img]?width=40&height=40";
+      var imgPathMG = Drupal.settings.bfi.generalsettings.merchantGroupLogoPath;
+      var imgPathMGError = Drupal.settings.bfi.generalsettings.merchantGroupLogoPathError;
       var cultureCodeMG = 'en-gb';
       var defaultcultureCodeMG = 'en-gb';
       var defaultcultureCode = 'en-gb';
@@ -54,8 +54,8 @@
           var query = "merchantsId=" + listToCheck + "&language=en-gb&task=GetMerchantsByIds";
  
           if (listToCheck != '')
-            var imgPath = "//cdnazure.bookingfor.com/bibione/images/resources/merchants/148x148/[img]";
-            var imgPathError = "//ws.bookingfor.com/azure/bibione/images/resources/merchants/[img]?width=148&height=148&bgcolor=FFFFFF";
+            var imgPath = Drupal.settings.bfi.generalsettings.merchantListLogoPath;
+            var imgPathError = Drupal.settings.bfi.generalsettings.merchantListLogoPathError;
             var imgPathresized = imgPath.substring(0, imgPath.lastIndexOf("/")).match(/([^\/]*)\/*$/)[1] + "/";
             imgPath = imgPath.replace(imgPathresized, "");
             jQuery.getJSON(urlCheck + "?" + query, function(data) {

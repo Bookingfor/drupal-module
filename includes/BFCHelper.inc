@@ -1,10 +1,15 @@
 <?php
 
+define("COM_BOOKINGFORCONNECTOR_IMGURL_CDN", "//cdnazure.bookingfor.com/");
+define('COM_BOOKINGFORCONNECTOR_SUBSCRIPTION_KEY', variable_get('subscription_key', ''));
+define('COM_BOOKINGFORCONNECTOR_IMGURL', variable_get('subscription_key', ''). '/bookingfor/images');
+define('COM_BOOKINGFORCONNECTOR_BASEIMGURL','https://' . variable_get('subscription_key', '') . '.bookingfor.com/azure/' . variable_get('subscription_key', '') . '/bookingfor/images');
+
 class BFCHelper {
-	public static $defaultFallbackCode = 'en-gb';
+public static $defaultFallbackCode = 'en-gb';
 	private static $sessionSeachParamKey = 'searchparams';
-	private static $image_basePath = '/bibione/images/resources';
-	private static $image_basePathCDN = '//ws.bookingfor.com/azure';
+	private static $image_basePath = COM_BOOKINGFORCONNECTOR_BASEIMGURL;
+	private static $image_basePathCDN = COM_BOOKINGFORCONNECTOR_IMGURL_CDN;
 	private static $searchResults = array();
 	private static $currentState = array();
 	private static $defaultCheckMode = 5;
@@ -12,35 +17,13 @@ class BFCHelper {
 		
 	private static $image_paths = array(
 		'merchant' => '/merchants/',
-		'resources' => '/unita/',
-		'resource_gallery_xml' => '/unita/%d/gallery/gallery.xml',
+		'resources' => '/products/unita/',
+		'resource_gallery_xml' => '/products/unita/%d/gallery/gallery.xml',
 		'offers' => '/packages/',
 		'services' => '/servizi/',
 		'merchantgroup' => '/gruppimerchant/',
-		'onsellunits' => '/unitavendita/'
+		'onsellunits' => '/products/unitavendita/'
 	);
-
-//'100x100', 
-//'106x67',  
-//'148x148', 
-//'180x180', 
-//'200x70',  
-//'24x24',   
-//'250x250', 
-//'250x90',  
-//'400x250', 
-//'40x40'    
-//'416x290', 
-//'500x375', 
-//'550x300', 
-//'640x450', 
-//'65x65',   
-//'692x450', 
-//'770x545', 
-//'80x53',   
-//'85x85',   
-	
-
 
 	private static $image_path_resized = array(
 		'merchant_list'						=> '148x148',
@@ -862,33 +845,27 @@ date_default_timezone_set('UTC');
 	public static function getImageUrlResized($type, $path = null, $resizedpath = null ) {
 		if ($path == '' || $path===null)
 			return '';
-		$finalPath = self::$image_basePathCDN . self::$image_basePath;
+		$finalPath = self::$image_basePathCDN . COM_BOOKINGFORCONNECTOR_IMGURL;
 		if (isset($type) && isset(self::$image_paths[$type])) {
 			$finalPath .= self::$image_paths[$type] ;
 			if (!empty($resizedpath)) {
 					$pathfilename = basename($path);
 					if (isset(self::$image_path_resized[$resizedpath])) {
 						$path = str_replace($pathfilename, self::$image_path_resized[$resizedpath] . "/".$pathfilename ,$path);
-						
-						//$finalPath .= self::$image_path_resized[$resizedpath] . "/";
 					} else {
 						$path = str_replace($pathfilename, $resizedpath . "/".$pathfilename ,$path);
-						//$finalPath .= $resizedpath . "/";
 					}
-
 			}
-
 			$finalPath .= $path;
-				
 		}
-		
+				
 		return $finalPath;
 	}
 
 	public static function getImageUrl($type, $path = null, $resizepars = null ) {
 		if ($path == '' || $path===null)
 			return '';
-		$finalPath = self::$image_basePath . self::$image_basePath;
+		$finalPath = self::$image_basePath;
 		if (isset($type) && isset(self::$image_paths[$type])) {
 			$finalPath .= self::$image_paths[$type] . $path;
 			if (isset($resizepars)) {
@@ -911,9 +888,6 @@ date_default_timezone_set('UTC');
 					}
 				}
 			}
-			/*if (isset($resizepars) && isset(self::$image_resizes[$resizepars])){
-				$finalPath .= '?' . self::$image_resizes[$resizepars];
-			}*/
 		}
 		
 		return $finalPath;

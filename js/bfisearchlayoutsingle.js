@@ -1,5 +1,5 @@
 (function($) {
-  Drupal.behaviors.bfisearchgrouped = {
+  Drupal.behaviors.bfisearchsingle = {
     attach: function(context, settings) {  		
       var search_items = Drupal.settings.bfi.search_items;
       var resourceids = [];
@@ -28,14 +28,14 @@
       var loaded = false;
                
       if (listToCheck != '')
-              var imgPath = "//ws.bookingfor.com/azure/bibione/images/resources/unita/148x148/[img]";
-		        var imgPathError = "/bibione/images/resources/bibione/images/resources/unita/[img]?width=148&height=148&mode=crop&anchor=middlecente&bgcolor=FFFFFF";
+              var imgPath = Drupal.settings.bfi.generalsettings.resourceLogoPath;
+		        var imgPathError = Drupal.settings.bfi.generalsettings.resourceLogoPathError;
 
 		        var imgPathresized =  imgPath.substring(0,imgPath.lastIndexOf("/")).match(/([^\/]*)\/*$/)[1] + "/";
 		        imgPath = imgPath.replace(imgPathresized , "" );
 
-              var imgPathmerchant = '//ws.bookingfor.com/azure/bibione/images/resources/merchants/200x70/[img]';
-				 var imgPathmerchantError = '/bibione/images/resources/bibione/images/resources/merchants/[img]?width=200&height=70&bgcolor=FFFFFF';
+              var imgPathmerchant = Drupal.settings.bfi.generalsettings.merchantLogoPath;
+				 var imgPathmerchantError = Drupal.settings.bfi.generalsettings.merchantLogoPathError;
 		       
               var imgPathmerchantresized =  imgPathmerchant.substring(0,imgPathmerchant.lastIndexOf("/")).match(/([^\/]*)\/*$/)[1] + "/";
 		        imgPathmerchant = imgPathmerchant.replace(imgPathmerchantresized , "" );

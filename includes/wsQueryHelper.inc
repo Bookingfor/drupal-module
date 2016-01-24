@@ -10,7 +10,7 @@ class wsQueryHelper {
 
 	public function __construct($serviceUri, $apikey)
 	{
-		$this->serviceUri = variable_get('ws_url', '');
+      $this->serviceUri = 'https://'.variable_get('subscription_key', '').'.bookingfor.com/Modules/bookingfor/Services/BookingService.svc/';
 		$this->apikey =  variable_get('api_key', '');
 		$this->formlabel = '';
 		$this->useproxy = 0;

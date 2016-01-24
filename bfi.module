@@ -1,6 +1,36 @@
 <?php
 function bfi_init() {
+  global $base_url;
   drupal_add_js('http://maps.google.com/maps/api/js?sensor=false', 'external');
+  $modulePath = $base_url . "/".drupal_get_path('module', 'bfi');
+  $resourceLogoPath = BFCHelper::getImageUrlResized('resources',"[img]", 'resource_list_default');
+  $resourceLogoPathError = BFCHelper::getImageUrl('resources',"[img]", 'resource_list_default');
+
+  $merchantLogoPath = BFCHelper::getImageUrlResized('merchant',"[img]", 'resource_list_merchant_logo'); 
+  $merchantLogoPathError = BFCHelper::getImageUrl('merchant',"[img]", 'resource_list_merchant_logo');
+      
+  $merchantGroupLogoPath = BFCHelper::getImageUrlResized('merchantgroup','[img]', 'merchant_merchantgroup');
+  $merchantGroupLogoPathError = BFCHelper::getImageUrl('merchantgroup','[img]', 'merchant_merchantgroup');
+  
+  $merchantListLogoPath = BFCHelper::getImageUrlResized('merchant',"[img]", 'merchant_list_default');
+  $merchantListLogoPathError = BFCHelper::getImageUrl('merchant',"[img]", 'merchant_list_default');
+
+  $onsellResourceLogoPath = BFCHelper::getImageUrlResized('onsellunits',"[img]", 'onsellunit_list_default');
+  $onsellResourceLogoPathError = BFCHelper::getImageUrl('onsellunits',"[img]", 'onsellunit_list_default');
+
+  $generalsettings = array('resourceLogoPath' => $resourceLogoPath,
+                                           'resourceLogoPathError' => $resourceLogoPathError,
+                                           'merchantLogoPath' => $merchantLogoPath,
+                                           'merchantLogoPathError' => $merchantLogoPathError,
+                                           'merchantGroupLogoPath' => $merchantGroupLogoPath,
+                                           'merchantGroupLogoPathError' => $merchantGroupLogoPathError,  
+                                           'merchantListLogoPath' => $merchantListLogoPath,
+                                           'merchantListLogoPathError' => $merchantListLogoPathError,    
+                                           'onsellResourceLogoPath' => $onsellResourceLogoPath,
+                                           'onsellResourceLogoPathError' => $onsellResourceLogoPathError,           
+                                           'modulePath' =>$modulePath                                                                      
+  );
+  drupal_add_js(array('bfi' => array('generalsettings' => $generalsettings)), array('type' => 'setting'));
 }
 
 function bfi_menu() {
@@ -226,18 +256,16 @@ function bfi_theme($existing, $type, $theme, $path) {
 }
 
 function bfi_settings_form($form, $form_state) {
-  $form['ws_url'] = array(
+  $form['subscription_key'] = array(
     '#type' => 'textfield',
-    '#title' => 'Web Service URL',
-    '#default_value' => variable_get('ws_url', ''),
-  );
-  
+    '#title' => 'Subscription Key',
+    '#default_value' => variable_get('subscription_key', ''),
+  ); 
   $form['api_key'] = array(
     '#type' => 'textarea',
     '#title' => 'API Key',
     '#default_value' => variable_get('api_key', ''),
   );
-  
   $form['merchants_reviews_text_value_1'] = array(
     '#type' => 'textfield',
     '#title' => 'Merchants Review Valuation Text - Value 1',

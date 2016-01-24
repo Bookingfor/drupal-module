@@ -4,8 +4,8 @@ $language = 'en-gb';
 $listsId = array();
 $results = $onsellunits;
 
-$resourceImageUrl = $base_url."/sites/all/modules/bfi/images/default.png";
-$merchantImageUrl = $base_url."/sites/all/modules/bfi/images/DefaultLogoList.jpg";
+$resourceImageUrl = $base_url.'/'.drupal_get_path('module', 'bfi')."/images/default.png";
+$merchantImageUrl = $base_url.'/'.drupal_get_path('module', 'bfi')."/images/DefaultLogoList.jpg";
 
 $resourceLogoPath = BFCHelper::getImageUrlResized('onsellunits',"[img]", 'onsellunit_list_default');
 $resourceLogoPathError = BFCHelper::getImageUrl('onsellunits',"[img]", 'onsellunit_list_default');

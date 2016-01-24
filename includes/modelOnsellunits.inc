@@ -25,7 +25,7 @@ class BookingForConnectorModelOnSellUnits
 	
 	public function __construct($config = array())
 	{
-		$ws_url = variable_get('ws_url', '');
+		$ws_url = 'https://'.variable_get('subscription_key', '').'.bookingfor.com/Modules/bookingfor/Services/BookingService.svc/';
 		$api_key = variable_get('api_key', '');
 		$this->helper = new wsQueryHelper($ws_url, $api_key);
 		$this->urlResources = '/ResourceonsellView';

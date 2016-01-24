@@ -9,11 +9,11 @@
       });
      var listToCheck = resourceids.join(',');
      var urlCheck = Drupal.settings.bfi.ajaxUrl;
-     var imgPathmerchant = "//cdnazure.bookingfor.com/bibione/images/resources/merchants/200x70/[img]";
-     var imgPathmerchantError = "//ws.bookingfor.com/azure/bibione/images/resources/merchants/[img]?width=200&height=70&bgcolor=FFFFFF";
+     var imgPathmerchant = Drupal.settings.bfi.generalsettings.resourceLogoPath;
+     var imgPathmerchantError = Drupal.settings.bfi.generalsettings.resourceLogoPathError;
 
-     var imgPath = "//cdnazure.bookingfor.com/bibione/images/resources/unitavendita/148x148/[img]";
-     var imgPathError = "//ws.bookingfor.com/azure/bibione/images/resources/unitavendita/[img]?width=148&height=148&mode=crop&anchor=middlecenter&bgcolor=FFFFFF";
+     var imgPath = Drupal.settings.bfi.generalsettings.onsellResourceLogoPath;
+     var imgPathError = Drupal.settings.bfi.generalsettings.onsellResourceLogoPathError;
 
     var strAddressSimple = "";
     var strAddress = "[indirizzo] - [cap] - [comune] ([provincia])";
@@ -47,11 +47,11 @@
 		   console.log(data);
 			jQuery.each(data || [], function(key, val) {
 
-				imgLogo= Drupal.settings.basePath+"sites/all/modules/bfi/images/default.png";
-				imgLogoError= Drupal.settings.basePath+"sites/all/modules/bfi/images/images/default.png";
+				imgLogo= Drupal.settings.bfi.generalsettings.modulePath+"/images/default.png";
+				imgLogoError= Drupal.settings.bfi.generalsettings.modulePath+"/images/images/default.png";
 				
-				imgMerchantLogo= Drupal.settings.basePath+"sites/all/modules/bfi/images/DefaultLogoList.jpg";
-				imgMerchantLogoError= Drupal.settings.basePath+"sites/all/modules/bfi/images/DefaultLogoList.jpg";
+				imgMerchantLogo= Drupal.settings.bfi.generalsettings.modulePath+"/images/DefaultLogoList.jpg";
+				imgMerchantLogoError= Drupal.settings.bfi.generalsettings.modulePath+"/images/DefaultLogoList.jpg";
 
 				if (val.ImageUrl!= null && val.ImageUrl!= '') {
 					// new system with preresized images

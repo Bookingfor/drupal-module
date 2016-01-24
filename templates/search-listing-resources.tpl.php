@@ -5,22 +5,22 @@ $language = "en-gb";
 
 $onlystay = $_SESSION['search.params']['onlystay']?: true;
 
-$img = $base_url . "/sites/all/modules/bfi/images/default.png";
-$imgError = $base_url . "/sites/all/modules/bfi/images/default.png";
+$img = $base_url . "/".drupal_get_path('module', 'bfi')."/images/default.png";
+$imgError = $base_url . "/".drupal_get_path('module', 'bfi')."/images/default.png";
 
-$merchantLogo =  $base_url . "/sites/all/modules/bfi/images/default.png";
-$offersDefault =  $base_url . "/sites/all/modules/bfi/images/offertDefault.jpg";
+$merchantLogo =  $base_url . "/".drupal_get_path('module', 'bfi')."/images/default.png";
+$offersDefault =  $base_url . "/".drupal_get_path('module', 'bfi')."/images/offertDefault.jpg";
 
 
-$resourceImageUrl = $base_url . "/sites/all/modules/bfi/images/default.png";
-$merchantImageUrl = $base_url . "/sites/all/modules/bfi/images/DefaultLogoList.jpg";
+$resourceImageUrl = $base_url . "/".drupal_get_path('module', 'bfi')."/images/default.png";
+$merchantImageUrl = $base_url . "/".drupal_get_path('module', 'bfi')."/images/DefaultLogoList.jpg";
 
 $resourceLogoPath = BFCHelper::getImageUrlResized('resources',"[img]", 'resource_list_default');
 $resourceLogoPathError = BFCHelper::getImageUrl('resources',"[img]", 'resource_list_default');
 
 $merchantLogoPath = BFCHelper::getImageUrlResized('merchant',"[img]", 'resource_list_merchant_logo');
 $merchantLogoPathError = BFCHelper::getImageUrl('merchant',"[img]", 'resource_list_merchant_logo');
-$offersDefault =  $base_url . "/sites/all/modules/bfi/images/offertDefault.jpg";
+$offersDefault =  $base_url . "/".drupal_get_path('module', 'bfi')."/images/offertDefault.jpg";
 
 
 $filters = null;
