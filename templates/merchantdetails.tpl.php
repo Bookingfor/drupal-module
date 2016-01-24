@@ -25,8 +25,6 @@ if(!empty($merchant->YPos)){
 $showMap = (($resourceLat != null) && ($resourceLon !=null) );
 ?>
 <div class="com_bookingforconnector_merchantdetails com_bookingforconnector_merchantdetails-t<?php echo BFCHelper::showMerchantRatingByCategoryId($merchant->MerchantTypeId)?>">
-	<?php //echo  $this->loadTemplate('head'); ?>
-
 	<div class="resourcecontainer">
 		<div class="resourcetabmenu">
 			<a class="foto selected" rel="foto"><?php echo 'Photo'; ?></a><?php if (($showResourcePlanimetria)) :?><a class="planimetria" rel="planimetria"><?php echo 'COM_BOOKINGFORCONNECTOR_VIEWS_ONSELLUNIT_TAB_PLANIMETRIA'; ?></a><?php endif?><?php if (($showResourceVideo)) :?><a class="video" rel="video"><?php echo 'COM_BOOKINGFORCONNECTOR_VIEWS_ONSELLUNIT_TAB_VIDEO'; ?></a><?php endif?><?php if (($showMap)) :?><a class="mappa" rel="mappa"><?php echo 'Map'; ?></a><?php endif?>

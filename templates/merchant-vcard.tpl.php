@@ -124,7 +124,7 @@ if (isset($merchantgroups )){
 		<?php if ($merchantSiteUrl != ''):?>
 		<tr>
 			<td class="mod_bookingforconnector-resource-table-label noborder"><?php echo 'Site'; ?>:</td>
-			<td class="mod_bookingforconnector-resource-table-value noborder"></td>
+			<td class="mod_bookingforconnector-resource-table-value noborder"><a target="_blank" href="<?php echo 'http://'.$merchant->AddressData->SiteUrl; ?>">Go to web site</a></td>
 		</tr>
 		<?php endif;?>
 	</table>

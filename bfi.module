@@ -89,6 +89,12 @@ function bfi_menu() {
     'access arguments' => array('access content'),
     'type' => MENU_CALLBACK,
   );
+  $items['merchant-details/merchantdetails/%/resources'] = array(
+    'title' => 'Bookingfor Contact',
+    'page callback' => 'accommodationdetails_merchantdetails_resources',
+    'access arguments' => array('access content'),
+    'type' => MENU_CALLBACK,
+  );
   $items['merchant-details/merchantdetails/%/sales'] = array(
     'title' => 'Bookingfor',
     'page callback' => 'accommodationdetails_merchantdetails_sales',
@@ -747,6 +753,20 @@ $filters = array('stars' => $stars,
         '#type' => 'ajax',
         '#commands' => $commands,
  );
+}
+
+function accommodationdetails_merchantdetails_resources() {
+  $arg2 = arg(2);
+  $comp = explode('-', $arg2);
+  $merchantId = $comp[0];
+   
+  $model =  new BookingForConnectorModelMerchantDetails;
+  $merchant = $model->getItem($merchantId);
+  
+  $merchantdetails = array('merchantId' => $merchant->MerchantId, 'merchantName' => $merchant->Name);
+  drupal_add_js(array('bfi' => array('merchantdetails' => $merchantdetails)), array('type' => 'setting'));
+  drupal_add_js(drupal_get_path('module', 'bfi') . '/js/bfiresourcelist.js');
+  return '<div class="com_bookingforconnector_merchantdetails com_bookingforconnector_merchantdetails-t'.BFCHelper::showMerchantRatingByCategoryId($merchant->MerchantTypeId).'"><div id="firstresources">Loading....</div><br /><br /></div>';
 }
 
 function bfi_search_by_merchant_type_form_helper($include_price_quote = FALSE, $model = NULL, $resource = NULL) {
