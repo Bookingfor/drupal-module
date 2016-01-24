@@ -86,7 +86,7 @@ class BookingForConnectorModelServices
 		return $count;
 	}
 	
-	public function getServicesByIds($listsId) {// with randor order is not possible to otrder by another field
+	public function getServicesByIds($listsId) {
 		$options = array(
 				'path' => $this->urlServices,
 				'data' => array(
@@ -116,10 +116,9 @@ class BookingForConnectorModelServices
 
  
 		$url = $this->helper->getQuery($options);
-		
 		$services = null;
-		
 		$r = $this->helper->executeQuery($url);
+		
 		if (isset($r)) {
 			$res = json_decode($r);
 			if (!empty($res->d->results)){

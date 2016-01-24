@@ -140,15 +140,6 @@ echo $sellonsearchform;
 				 <code>
 					<a class="com_bookingforconnector_print"  href="javascript:void(0);" onclick="javascript:window.print()"><?php echo 'Print'; ?></a>
 				 </code>&nbsp;
-				<?php if(COM_BOOKINGFORCONNECTOR_ENABLEFAVORITES):?>
-				 <code>
-					<?php if(BFCHelper::IsInFavourites($resource->ResourceId)):?>
-						<a class="com_bookingforconnector_fav com_bookingforconnector_favadded " href="<?php echo $routeFav ?>" ><?php echo 'Favourites'; ?></a>
-					<?php else:?>
-						<a class="com_bookingforconnector_fav " href="javascript:addCustomURlfromfavTranfert('#favAnchor<?php echo $resource->ResourceId?>',<?php echo $resource->ResourceId?>,'<?php echo 'Remove from Favourites'; ?>')" id="favAnchor<?php echo $resource->ResourceId?>" ><?php echo 'Add to Favourites'; ?></a>
-					<?php endif ?>
-				 </code>
-				<?php endif ?>
 		</div>
 	</div>
 	<div class="com_bookingforconnector_resource_feature">

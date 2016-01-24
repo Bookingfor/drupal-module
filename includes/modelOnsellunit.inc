@@ -81,19 +81,19 @@ class BookingForConnectorModelOnSellUnit
 			}elseif(!empty($res->d)){
 				$resource = $res->d;
 			}
+
 			$resource->Merchant=BFCHelper::getMerchantFromServicebyId($resource->MerchantId);
 			if (!empty($resource->ServiceIdList)){
 				$services=BFCHelper::GetServicesByIds($resource->ServiceIdList);
-				if (count($resource->Services) > 0){
+				if (count($services) > 0){
 					$tmpservices = array();
-					foreach ($resource->Services as $service){
+					foreach ($services as $service){
 						$tmpservices[] = BFCHelper::getLanguage($service->Name, $this->language);
 					}
 					$services = implode(', ',$tmpservices);
 				}
 				$resource->Services = $services;
 			}
-
 		}
 		return $resource;
 	}	
