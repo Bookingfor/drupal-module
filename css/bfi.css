@@ -1526,3 +1526,7 @@ width: 100%;
     width: 47%;
     display: inline-block;
 }
+
+.checkincalendar, .checkoutcalendar {
+    width: 93%;
+}

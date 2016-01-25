@@ -1,6 +1,38 @@
 (function($) {
   Drupal.behaviors.bfi = {
     attach: function(context, settings) {  
+         var start = jQuery('.checkincalendar').val();
+     date = jQuery.datepicker.parseDate('dd/mm/yy', start);
+     var dstart = new Date(date);
+     
+     var end = jQuery('.checkoutcalendar').val();
+     date = jQuery.datepicker.parseDate('dd/mm/yy', end);
+     var dend = new Date(date);
+     
+     var dendmin = new Date(dstart);
+     dendmin.setDate(dstart.getDate() + 1);
+
+	   jQuery('.checkincalendar').datepicker({
+        dateFormat : 'dd/mm/yy',
+        defaultDate: dstart,
+        onSelect: function(selectedDate) {
+          instance = jQuery('.checkincalendar').data("datepicker");
+          date = jQuery.datepicker.parseDate(
+			  instance.settings.dateFormat ||
+			  $.datepicker._defaults.dateFormat,
+			  selectedDate, instance.settings);
+         var d = new Date(date);
+         d.setDate(d.getDate() + 1);
+         jQuery(".checkoutcalendar").datepicker("option", "minDate", d);
+        }
+      });
+     
+     jQuery('.checkoutcalendar').datepicker({
+        dateFormat : 'dd/mm/yy',
+        defaultDate: dend,
+        minDate: dendmin
+     });
+            
           jQuery(".resourcetabmenu a").click(function() {
  			jQuery('.tabcontent').hide();
 			var activeTab = jQuery(this).attr("rel"); 

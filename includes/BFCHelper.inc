@@ -1173,7 +1173,7 @@ date_default_timezone_set('UTC');
 				if (($strCheckin == null || $strCheckin == '') && (isset($pars['checkin']) && $pars['checkin'] != null && $pars['checkin'] != '')) {
 					return clone $pars['checkin'];
 				}
-				$checkin = DateTime::createFromFormat('m/d/Y',$strCheckin);
+				$checkin = DateTime::createFromFormat('d/m/Y',$strCheckin);
 				if ($checkin===false && isset($default)) {
 					$checkin = $default;
 				}
@@ -1184,7 +1184,7 @@ date_default_timezone_set('UTC');
 				if (($strCheckout == null || $strCheckout == '') && (isset($pars['checkout']) && $pars['checkout'] != null && $pars['checkout'] != '')) {
 					return clone $pars['checkout'];
 				}
-				$checkout = DateTime::createFromFormat('m/d/Y',$strCheckout);
+				$checkout = DateTime::createFromFormat('d/m/Y',$strCheckout);
 				if ($checkout===false && isset($default)) {
 					$checkout = $default;
 				}
