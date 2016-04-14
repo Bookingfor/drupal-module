@@ -1,4 +1,4 @@
-# Drupal module - V.1
+# Drupal module - V.1 - Not supported
 Drupal module repo for Bookingfor<br/>
 
 # Requirements
